@@ -6,3 +6,10 @@
 1. mongod
 1. node server.js
 1. browse to localhost:3000
+
+
+Name: Kangming Xu
+
+Self Introduction:
+I am a junior undergraduate student at Northeastern. I have taken some basic CS courses, such as CS3500, CS4800. I know Java and C++.
+Projects: Most of projects I have done were written in Java, like Forbidden Island, and Music Editor.  
