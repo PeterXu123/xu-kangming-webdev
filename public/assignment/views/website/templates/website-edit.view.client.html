@@ -1,0 +1,149 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="navbar-brand col-sm-0">
+                <a href="#!/user/{{model.userId}}/website/" >
+
+                    <span class="glyphicon glyphicon-arrow-left pull-left" ></span>
+                </a>
+            </div>
+            <div class="navbar-brand col-sm-4 hidden-xs">
+                Website
+
+
+
+
+
+            </div>
+            <div class="navbar-brand col-sm-4 hidden-xs">
+                <a href="#!/user/{{model.userId}}/website/new" >
+                    <span class="glyphicon glyphicon-plus" ></span>
+                </a>
+
+
+
+            </div>
+            <div class="">
+                <a class="navbar-brand col-sm-1">
+                    EditWebsite</a>
+            </div>
+            <div class="col-xs 3 pull-right" >
+                <div class="navbar-brand col-sm-3">
+
+                    <a href="#!/user/{{model.userId}}/website/" >
+                        <span class="glyphicon glyphicon-ok pull-right" ></span>
+
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4 hidden-xs srollable-left">
+            <ul class="list-group">
+                <li class="list-group-item active">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-8 col-sm-11 col-xs-6">
+                            Website Name
+                        </div>
+                        <div class="col-lg-3 visible-lg">
+                            Created
+                        </div>
+                        <div class="col-md-2 hidden-sm  hidden-xs">
+                            Updated
+                        </div>
+                        <div class="col-sm-2 col-xs-6">
+
+                        </div>
+                    </div>
+                </li>
+                <li ng-repeat="website in model.websites" class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-8 col-xs-11">
+                            <a href="#!/user/{{model.userId}}/website/{{model.pageId}}" >
+                                {{website.name}}
+
+                            </a>
+                        </div>
+                        <div class="col-lg-3 visible-lg">
+                            {{website.created |date}}
+                        </div>
+                        <div class="col-md-3 hidden-sm hidden-xs">
+                            {{website.updated |date}}
+                        </div>
+                        <div class="col-xs-1">
+                            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}" >
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+
+
+
+
+
+
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-8">
+            <label for="name">Name</label>
+            <input id="name"
+                   ng-model="model.website.name"
+                   class="form-control"
+                   placeholder="Name"
+                   value="Blogger"/>
+
+            <label for="description">Websites Description</label>
+            <textarea id="description"
+                      rows="5"
+                      ng-model="model.website.description"
+                      placeholder="Websites Description"
+                      class="form-control">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</textarea>
+            <a ng-click="model.updateWebsite(model.website.name, model.website.description)"
+               class="btn btn-block btn-success">
+                Update
+            </a>
+
+            <a ng-click="model.deleteWebsite(model.websiteId)"
+               class="btn btn-block btn-danger">
+                Delete
+            </a>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="row navbar-text">
+            <div class="col-xs-3 text-center">
+                <a href="#!/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-heart"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,93 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="navbar-brand col-sm-0">
+                <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+
+                    <span class="glyphicon glyphicon-arrow-left pull-left" ></span>
+                </a>
+            </div>
+            <div class="navbar-brand col-sm-4 hidden-xs">
+                Video Editor
+
+
+
+
+
+            </div>
+
+
+            <div class="col-xs 3 pull-right" >
+                <div class="navbar-brand col-sm-3">
+
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                        <span class="glyphicon glyphicon-ok pull-right" ></span>
+
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <label for="name">Name</label>
+    <input class="form-control"
+           placeholder="facebook"
+           value="video name"
+           id="name"/>
+
+    <label for="text">Text</label>
+    <input class="form-control"
+           placeholder="facebook"
+           value="what ever hello"
+           id="text"/>
+    <label for="text">Url</label>
+    <input class="form-control"
+           placeholder="facebook"
+           ng-model="model.widget.url"
+           value="https://guesswhat.com"
+           id="url"/>
+
+
+
+    <a ng-click="model.updateVideoWidget(model.widget.url)"
+       class="btn btn-block btn-success">Update</a>
+
+    <a ng-click="model.deleteWidget(widget)"
+       class="btn btn-block btn-danger">Delete</a>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="row navbar-text">
+            <div class="col-xs-3 text-center">
+                <a href="#!/user/{{model.userId}}">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-heart"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
