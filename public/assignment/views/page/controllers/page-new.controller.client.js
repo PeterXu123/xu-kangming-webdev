@@ -11,6 +11,7 @@
         model.websiteId = $routeParams['websiteId'];
         model.userId = $routeParams['userId'];
         model.createPage = createPage;
+
         function init() {
             model.pages = pageService.findAllPagesForWebsite(model.websiteId);
         }
