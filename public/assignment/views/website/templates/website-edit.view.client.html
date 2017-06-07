@@ -45,6 +45,9 @@
 </nav>
 
 <div class="container-fluid">
+    <div ng-show="model.message" class ="alert alert-info">
+        {{model.message}}
+    </div>
     <div class="row">
         <div class="col-sm-4 hidden-xs srollable-left">
             <ul class="list-group">
@@ -108,12 +111,12 @@
                       ng-model="model.website.description"
                       placeholder="Websites Description"
                       class="form-control">Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</textarea>
-            <a ng-click="model.updateWebsite(model.website.name, model.website.description)"
+            <a ng-click="model.updateWebsite(model.website)"
                class="btn btn-block btn-success">
                 Update
             </a>
 
-            <a ng-click="model.deleteWebsite(model.websiteId)"
+            <a ng-click="model.deleteWebsite(model.website)"
                class="btn btn-block btn-danger">
                 Delete
             </a>
