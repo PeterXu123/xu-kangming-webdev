@@ -5,7 +5,7 @@
     angular
         .module('WAM')
         .factory('websiteService', websiteService);
-        function websiteService(){
+        function websiteService($http){
             var websites = [
                 { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
                 { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem" },
@@ -25,44 +25,50 @@
             };
             return api;
             function createWebsite(website) {
-                website._id = (new Date()).getTime() + "";
-                website.created = new Date();
-                website.updated = new Date();
-                websites.push(website);
+                var userId = website.developerId;
+
+                var url = "/api/user/" + userId + "/website"  ;
+                return $http.post(url, website)
+                    .then(function (response) {
+                        return response.data;
+                    })
+
             }
             function updateWebsite(websiteId, website) {
-                var found = findWebsiteById(websiteId);
-                if (found !== null) {
-                    found.description = website.description;
-                    found.name = website.name;
-                    return found
-                }
-                return null;
+               var url = "/api/website/" + websiteId;
+               console.log("here1");
+
+               return $http.put(url, website)
+                   .then(function(response) {
+                       return response.data;
+                   });
+
 
             }
             function deleteWebsite(websiteId) {
-                var website = websites.find(function (website) {
-                    return website._id === websiteId;
-                });
-                var index = websites.indexOf(website);
-                websites.splice(index, 1);
+
+               var url = "/api/website/" + websiteId;
+
+               return $http.delete(url)
+                   .then(function(response){
+                       return response.data;
+                })
             }
             function findWebsiteById(websiteId) {
-                return websites.find(function (website) {
-                    return website._id === websiteId;
-                });
+                var url = "/api/website/" + websiteId;
+                return $http.get(url)
+                    .then(function (response) {
+                        return response.data;
+                    })
             }
 
             function findAllWebsitesForUser(userId) {
-                var resultSet = [];
-                for(var w in websites) {
-                    if(websites[w].developerId === userId) {
-                        // websites[w].created = new Date();
-                        // websites[w].updated = new Date();
-                        resultSet.push(websites[w]);
-                    }
-                }
-                return resultSet;
+                var url ="/api/user/" + userId + "/website";
+                return  $http.get(url)
+                    .then(function (response) {
+                        return response.data
+                    });
+
             }
 
 

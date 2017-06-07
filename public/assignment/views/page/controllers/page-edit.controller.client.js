@@ -17,32 +17,47 @@
         model.deletePage = deletePage;
 
         function init() {
-            model.pages = pageService.findAllPagesForWebsite(model.websiteId);
-            model.page = pageService.findPageById(model.pageId);
+            model.pages = pageService.findAllPagesForWebsite(model.websiteId)
+                .then(function(pages) {
+                    model.pages = pages;
+                })
+            model.page = pageService.findPageById(model.pageId)
+                .then(function(page) {
+                    model.page = page;
+                })
         }
 
         init();
         function createPage(page) {
             page.websiteId = model.websiteId;
-            pageService.createPage(page);
-            $location.url('/user/'+model.userId+'/website/' + model.websiteId + '/page');
+            pageService.createPage(page)
+                .then(function() {
+                    $location.url('/user/'+model.userId+'/website/' + model.websiteId + '/page');
+
+                })
         }
-        function updatePage(name, description) {
-            var page ={
-                _id : model.pageId,
-                name : name,
-                websiteId : model.websiteId,
-                description : description
-
-
-            }
-            pageService.updatePage(model.pageId, page);
-            $location.url('/user/'+model.userId+'/website/' + model.websiteId + '/page');
+        function updatePage(page) {
+            // var page ={
+            //     _id : model.pageId,
+            //     name : name,
+            //     websiteId : model.websiteId,
+            //     description : description
+            //
+            //
+            // }
+            pageService.updatePage(model.pageId, page)
+                .then(function() {
+                    model.message = "page updated good";
+                    // $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId );
+                })
 
         }
-        function deletePage(pageId) {
-            pageService.deletePage(pageId);
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+        function deletePage(page) {
+            pageService.deletePage(page._id)
+                .then(function() {
+                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+
+                })
         }
 
 
