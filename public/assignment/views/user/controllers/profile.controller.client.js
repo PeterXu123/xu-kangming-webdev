@@ -10,31 +10,53 @@
         model.userId = $routeParams['userId']
 
         model.update = update;
+        model.deleteUser = deleteUser;
 
 
 
-        model.user = userService.findUserById(model.userId);
-
-        function update (firstName, lastName) {
-
-            var userold = userService.findUserById(userId);
-            var usernew = {
-                _id: userId,
-                username: userold.username,
-                password: userold.password,
-                firstName: firstName,
-                lastName: lastName
-
-
-
-            };
-
-            userService.updateUser(userId, usernew);
+           userService
+            .findUserById(model.userId)
+               .then(renderUser, userError);
+        function renderUser(user) {
+            console.log(user);
+            model.user = user;
+        };
+        function userError(error) {
+            model.error = "User not found"
+        }
 
 
 
 
-                $location.url('/user/' + model.user._id );
+
+
+        // model.user = userService.findUserById(model.userId).
+
+
+        function deleteUser(user) {
+
+            userService.deleteUser(user._id)
+                .then(function() {
+                    $location.url('/');
+                },
+                function() {
+                    model.error = "unable to unregister you"
+                });
+
+
+        }
+
+        function update (user) {
+            userService.updateUser(user._id, user)
+                .then(function() {
+                    model.message = "User updated good";
+                })
+
+
+
+
+
+
 
 
 

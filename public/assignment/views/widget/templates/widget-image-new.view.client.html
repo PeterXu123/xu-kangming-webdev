@@ -44,11 +44,31 @@
     <label for="text">Text</label>
     <input id="text"
            class="form-control"/>
+    <label > Upload </label>
+    <form action="/api/upload/create"   method="post" enctype="multipart/form-data" >
+        <input  name="myFile"    type="file" class="form-control"/>
+
+        <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
+        <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
+        <input  name="pageId"    value="{{model.pageId}}"   style="display: none"/>
+
+        <button type="submit"    class="btn btn-block btn-primary form-control" >Create uploadImage</button>
+    </form>
 
     <label for="url">URL</label>
     <input id="url"
            ng-model="model.imageUrl"
            class="form-control"/>
+
+    <div class="input-group">
+        <input ng-model="searchText" type="text" class="form-control">
+        <span class="input-group-btn">
+        <a ng-click="model.searchPhotos(searchText)" class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+    </div>
+
 
     <!--<label for="file1">File Upload</label>-->
     <!--<input id="file1"-->

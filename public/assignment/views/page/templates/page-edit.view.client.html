@@ -45,6 +45,9 @@
 </nav>
 
 <div class="container-fluid">
+    <div ng-show="model.message" class ="alert alert-info">
+        {{model.message}}
+    </div>
 
     <div class="row">
         <div class="col-xs-4 hidden-xs">
@@ -111,11 +114,11 @@
                       rows="5"
                       placeholder="page title"
                       class="form-control"> </textarea>
-            <a ng-click="model.updatePage(model.page.name, model.page.description)"
+            <a ng-click="model.updatePage(model.page)"
                class="btn btn-block btn-success">
                 Update
             </a>
-            <a ng-click="model.deletePage(model.pageId)"
+            <a ng-click="model.deletePage(model.page)"
                class="btn btn-block btn-danger">
                 Delete
             </a>

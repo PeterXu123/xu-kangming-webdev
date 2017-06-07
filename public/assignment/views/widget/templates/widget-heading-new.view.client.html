@@ -2,6 +2,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
+
         <div class="row">
             <div class="navbar-brand col-sm-0">
                 <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
@@ -37,7 +38,9 @@
 
 <div class="container-fluid">
 
+
     <label for="name">Name</label>
+
     <input class="form-control"
            placeholder="facebook"
            value="top heading"
@@ -61,7 +64,7 @@
         <option>5</option>
         <option>6</option>
     </select>
-    <a ng-click="model.createHeadingWidget(widget)"
+    <a ng-click="model.createHeadingWidget(model.headText, model.headSize)"
        class="btn btn-block btn-success">Upload</a>
 
     <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"

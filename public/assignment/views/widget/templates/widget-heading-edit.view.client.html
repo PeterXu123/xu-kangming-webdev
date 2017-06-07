@@ -37,6 +37,7 @@
 
 <div class="container-fluid">
 
+    {{model.widgets}}
     <label for="name">Name</label>
     <input class="form-control"
            placeholder="facebook"
@@ -64,7 +65,7 @@
     <a ng-click="model.updateHeadingWidget(widget)"
        class="btn btn-block btn-success">Update</a>
 
-    <a ng-click="model.deleteWidget(model.widget.text, model.widget.size)" class="btn btn-block btn-danger">Delete</a>
+    <a ng-click="model.deleteWidget(model.widget)" class="btn btn-block btn-danger">Delete</a>
 
 </div>
 

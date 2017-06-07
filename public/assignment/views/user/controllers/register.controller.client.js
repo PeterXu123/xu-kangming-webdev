@@ -13,35 +13,58 @@
 
         // implementation
         function register (username, password, password2) {
-
-            if (password !== password2) {
-                model.error = "Passwords must match";
+            if (username === null || username === '' || typeof username === 'undefined') {
+                model.error = 'username is required';
                 return;
             }
-            var found = userService.findUserByUsername(username);
-            if (found !== null) {
-                model.error = "username is not available"
-
-            }
-            else {
-                var user = {
-
-                    username: username,
-                    password: password
-                };
-                //model.message = user;
-                userService.createUser(user);
-                $location.url('/user/' + user._id );
-
-
-
+            if (password !== password2 || password === null || typeof password === 'undefined') {
+                model.error = "passwords must match";
+                return;
             }
 
 
+            userService.findUserByUsername(username)
+                .then(function () {
+                        model.error = "sorry, that username is taken";
+                    },
+                    function () {
+                        var newUser = {
+
+                            username: username,
+                            password: password
+                        };
+                        userService.createUser(newUser)
+                            .then(function (response) {
+                                $location.url('/user/' + response._id);
+                            })
 
 
-            };
-        }
+
+
+
+
+
+
+                });
+
+            // if (found !== null) {
+            //     model.error = "username is not available"
+            //
+            // }
+            // else {
+            //     var user = {
+            //
+            //         username: username,
+            //         password: password
+            //     };
+            //     //model.message = user;
+            //     userService.createUser(user)
+            //         .then(function (user) {
+            //             $location.url('/user/' + user._id );
+            //         })
+
+
+        }}
 
 
 }) ();

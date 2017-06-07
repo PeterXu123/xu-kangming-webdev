@@ -17,29 +17,44 @@
         model.deleteWebsite = deleteWebsite;
 
         function init() {
-            model.websites = websiteService.findAllWebsitesForUser(model.userId);
-            model.website = websiteService.findWebsiteById(model.websiteId);
+            websiteService.findAllWebsitesForUser(model.userId)
+                .then(function(websites) {
+                    model.websites = websites;
+                });
+           websiteService.findWebsiteById(model.websiteId)
+               .then(function (website) {
+                   model.website = website;
+               })
         }
         init();
 
         // implementation
         function createWebsite(website) {
             website.developerId = model.userId;
-            websiteService.createWebsite(website);
-            $location.url('/user/'+model.userId+'/website');
-        }
-        function updateWebsite(webname, webdescription) {
-            var website = {_id : model.websiteId, name : webname, developerId: model.userId, description: webdescription};
-
-
-
-            websiteService.updateWebsite(model.websiteId, website);
-            $location.url('/user/'+model.userId+'/website/');
+            websiteService.createWebsite(website)
+                .then(function () {
+                    $location.url('/user/'+model.userId+'/website');
+                })
 
         }
-        function deleteWebsite(websiteId) {
-            websiteService.deleteWebsite(websiteId);
-            $location.url('/user/' + model.userId + '/website');
+        function updateWebsite(website) {
+
+
+
+
+            websiteService.updateWebsite(model.websiteId, website)
+                .then(function() {
+                    model.message = "Website updated good";
+                })
+
+
+        }
+        function deleteWebsite(website) {
+            websiteService.deleteWebsite(website._id)
+                .then(function() {
+                    $location.url('/user/' + model.userId + '/website');
+                })
+
         }
     }
 })();
