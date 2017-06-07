@@ -9,7 +9,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(app.express.static(__dirname + '/public'));
 
 require ("./test/app.js")(app);
+<<<<<<< HEAD
 require('./assignment/app');
+=======
+require("./assignment/app.js");
+>>>>>>> origin/master
  // require('public/assignment/directives/app.js')
 
 
