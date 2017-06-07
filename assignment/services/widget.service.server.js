@@ -6,10 +6,12 @@ var widgets =[
     { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
     { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
         "url": "http://lorempixel.com/400/200/"},
+    { "_id": "567", "widgetType": "HEADING", "pageId": "654", "size": 4, "text": "Lorem ipsum"},
 
     { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
     { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-        "url": "https://youtu.be/AM2Ivdi9c4E" }
+        "url": "https://youtu.be/AM2Ivdi9c4E" },
+    { "_id": "567", "widgetType": "HEADING", "pageId": "123", "size": 4, "text": "Lorem ipsum"}
 
 ];
 
@@ -151,7 +153,24 @@ function sortWidget(req, res) {
     var index1 = req.body.first;
     var index2 = req.body.second;
     var pageId = req.params['pageId'];
-    widgets.move(index1, index2);
+    var result = [];
+    for (var w in widgets) {
+        if (widgets[w].pageId === pageId) {
+            result.push(widgets[w])
+        }
+    }
+    console.log(result);
+    var oldonevalue = result[index1];
+    console.log(oldonevalue);
+    var oldtwovalue = result[index2];
+    console.log(oldtwovalue);
+
+    var going = widgets.indexOf(oldonevalue)
+
+    var leaving = widgets.indexOf(oldtwovalue);
+
+
+     widgets.move(going, leaving);
     res.sendStatus(200);
 
 
@@ -258,22 +277,19 @@ function updateWidget(req, res) {
 }
 
 function deleteWidget(req, res) {
-    var widgetId = req.params['widgetId'];
-    for (var u in widgets) {
-        if (widgets[u]._id = widgetId) {
-
-            widgets.splice(u, 1);
-            res.sendStatus(200);
-            return;
-        }
+    var widgetId = req.params['widgetId']
+    var widget = widgets.find(function (widget) {
+        return widgetId === widget._id
+    })
+    if (widget !== null) {
+        var index = widgets.indexOf(widget)
+        widgets.splice(index, 1)
+        res.sendStatus(200);
+        return
     }
-
-    // var index = websites.indexOf(website);
-    // websites.splice(index, 1);
-    // res.sendStatus(200);
-    //  return;
-    res.sendStatus(404);
-
+    res.sendStatus(404)
 }
+
+
 
 
