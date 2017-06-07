@@ -10,10 +10,7 @@
             model.pageId = $routeParams['pageId'];
 
            function init() {
-               widgetService.findAllWidgetsById(model.pageId)
-                   .then(function(response) {
-                       model.widgets = response;
-                   })
+               model.widgets = widgetService.findAllWidgetsById(model.pageId);
            }
            init();
 
@@ -24,50 +21,38 @@
             model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
             model.getWidgetUrlForType = getWidgetUrlForType;
             model.editWidget = editWidget;
-            function createHeadingWidget(text, size) {
+            function createHeadingWidget(widget) {
                 var widget = {
                     widgetType : "HEADING",
-                    text : text,
-                    size : size,
-                    pageId : model.pageId
+                    text : model.headText,
+                size : model.headSize
             }
 
-                widgetService.createWidget(model.pageId, widget)
-                    .then(function(response){
-                        console.log(response)
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
-                    })
-                // console.log("fdfd");
-
+                widgetService.createWidget(model.pageId, widget);
+                console.log("fdfd");
+                $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
             }
             function createImageWidget(widget) {
                 var widget = {
                     widgetType : "IMAGE",
-                    pageId : model.pageId,
+
                     width : "100%",
                     url: model.imageUrl
                 }
 
 
-                widgetService.createWidget(model.pageId, widget)
-                    .then(function() {
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
-
-                    })
+                widgetService.createWidget(model.pageId, widget);
+                $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
 
             }
             function createVideoWidget(widget) {
                 var widget = {widgetType : "YOUTUBE",
-                    pageId : model.pageId,
 
                     width : "100%",
                     url: model.videoUrl}
 
-                widgetService.createWidget(model.pageId, widget)
-                    .then(function() {
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
-
-                    })
+                widgetService.createWidget(model.pageId, widget);
+                $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
 
             }
             function getYouTubeEmbedUrl(youTubeLink) {

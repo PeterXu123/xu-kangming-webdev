@@ -8,102 +8,68 @@
     angular
         .module('WAM')
         .factory('widgetService', widgetService);
+    function widgetService(){
+        var widgets = [
+                { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
+                { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+                { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
+                    "url": "http://lorempixel.com/400/200/"},
+                { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
+                { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
+                { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
+                    "url": "https://youtu.be/AM2Ivdi9c4E" }
 
-    function widgetService($http){
-
+            ]
+        ;
         var api = {
             createWidget: createWidget,
             findAllWidgetsById: findAllWidgetsById,
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
-            deleteWidget: deleteWidget,
-            sortWidget: sortWidget
+            deleteWidget: deleteWidget
 
         };
         return api;
-        function sortWidget(index1, index2, pageId) {
-            console.log(index1);
-            var url = "/api/page/" + pageId + "/widget?initial=" +
-                index1 + "&final=" + index2;
-            return $http.put(url, {first:index1, second:index2})
-                .then(function(response) {
-                    return response.data;
-                })
-
-
-        }
-
         function createWidget(pageId, widget) {
-            console.log(widget);
-            var url = "/api/page/" + pageId + "/widget";
-            return $http.post(url, widget)
-                .then(function(response) {
-                    console.log(response.data);
-                    return response.data;
-                })
 
-            // widget._id = (new Date()).getTime() + "";
-            // widget.pageId = pageId;
-            //
-            //
-            // widgets.push(widget);
+            widget._id = (new Date()).getTime() + "";
+            widget.pageId = pageId;
+
+            console.log(widget)
+            widgets.push(widget);
 
         }
         function updateWidget(widgetId, widget) {
-
-
-            var url = "/api/widget/" + widgetId;
-            return  $http.put(url, widget)
-                .then(function(response) {
-                    console.log("goal");
-                    console.log(response.data);
-                    return response.data;
-                })
-            // var found = findWidgetById(widgetId);
-            // if (found !== null) {
-            //    found = widget;
-            //     return found
-            // }
-            // return null;
+            var found = findWidgetById(widgetId);
+            if (found !== null) {
+               found = widget;
+                return found
+            }
+            return null;
         }
         function deleteWidget(widgetId) {
-            var url = "/api/widget/" + widgetId;
-            return $http.delete(url)
-                .then(function(response) {
-                    return response.data;
-                })
-            // var widget = widgets.find(function (widget) {
-            //     return widget._id === widgetId;
-            // });
-            // var index = widgets.indexOf(widget);
-            // widgets.splice(index, 1);
+            var widget = widgets.find(function (widget) {
+                return widget._id === widgetId;
+            });
+            var index = widgets.indexOf(widget);
+            widgets.splice(index, 1);
         }
         function findWidgetById(widgetId) {
-            var url = "/api/widget/" + widgetId;
-            return $http.get(url)
-                .then(function(response) {
-                    return response.data;
-                })
-            // return widgets.find(function (widget) {
-            //     return widget._id === widgetId;
-            // });
+            return widgets.find(function (widget) {
+                return widget._id === widgetId;
+            });
         }
 
         function findAllWidgetsById(pageId) {
-            var url = "/api/page/" + pageId + "/widget";
-            return $http.get(url)
-                .then(function(response) {
-                    return response.data;
-                })
-            // var resultSet = [];
-            // for(var w in widgets) {
-            //     if(widgets[w].pageId === pageId) {
-            //         // websites[w].created = new Date();
-            //         // websites[w].updated = new Date();
-            //         resultSet.push(widgets[w]);
-            //     }
-            // }
-            // return resultSet;
+            var resultSet = [];
+            for(var w in widgets) {
+                if(widgets[w].pageId === pageId) {
+                    // websites[w].created = new Date();
+                    // websites[w].updated = new Date();
+                    resultSet.push(widgets[w]);
+                }
+            }
+            return resultSet;
         }
 
 

@@ -19,26 +19,19 @@
 
 
 <div class="container-fluid">
-    <div ng-show="model.message" class ="alert alert-info">
-        {{model.message}}
-    </div>
-    <div ng-show="model.error" class ="alert alert-danger">
-        {{model.error}}
-    </div>
     <form>
         <div class="form-group">
             <label for="username">Username</label>
             <input readonly
                    ng-model="model.user.username"
                    type="text"
-
+                   value="alice"
                    class="form-control"
                    id="username" placeholder="Username">
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input ng-model="model.user.email"
-                    type="email" class="form-control" id="email" placeholder="">
+            <input type="email" class="form-control" id="email" placeholder="">
         </div>
         <div class="form-group">
             <label for="first-name">First Name</label>
@@ -54,7 +47,7 @@
 
     <a class="btn btn-primary btn-block"
        href="#!/user/{{model.user._id}}/website">Websites</a>
-    <a  ng-click="model.update(model.user)"
+    <a  ng-click="model.update(model.user.firstName, model.user.lastName)"
         class="btn btn-primary btn-block"
 
         >Update</a>
@@ -62,10 +55,6 @@
     <a class="btn btn-danger  btn-block"
 
        href="#!/">Logout</a>
-    <a class="btn btn-danger  btn-block"
-       ng-click="model.deleteUser(model.userId)"
-
-       href="#!/">DeleteUser</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

@@ -13,23 +13,16 @@
         model.createPage = createPage;
 
         function init() {
-            pageService.findAllPagesForWebsite(model.websiteId)
-                .then(renderPages);
+            model.pages = pageService.findAllPagesForWebsite(model.websiteId);
         }
 
         init();
-        function renderPages(pages) {
-            model.pages = pages;
-        }
 
 
         function createPage(page) {
             page.websiteId = model.websiteId;
-            pageService.createPage(page)
-                .then(function() {
-                    $location.url('/user/'+model.userId+'/website/' + model.websiteId + '/page');
-
-                })
+            pageService.createPage(page);
+            $location.url('/user/'+model.userId+'/website/' + model.websiteId + '/page');
         }
 
 

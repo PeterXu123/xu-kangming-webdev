@@ -48,35 +48,14 @@
            ng-model="model.widget.text"
            class="form-control"/>
 
-
-
-    <label > Upload </label>
-    <form action="/api/upload"   method="post" enctype="multipart/form-data" >
-        <input  name="myFile"    type="file" class="form-control"/>
-        <input  name="width"     value="{{model.widget.width}}" style="display: none"/>
-        <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
-        <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
-        <input  name="pageId"    value="{{model.pageId}}"   style="display: none"/>
-        <input  name="widgetId"  value="{{model.widget._id}}"   style="display: none"/>
-        <button type="submit"    class="btn btn-block btn-primary form-control" >Upload Image</button>
-    </form>
-
-
     <label for="url">URL</label>
     <input id="url"
            ng-model="model.widget.url"
            class="form-control"/>
 
 
-
-
-
-
-
-
-
     <a ng-click="model.updateImageWidget(model.widget.url)"
-       class="btn btn-block btn-success" class="form-control">Update</a>
+       class="btn btn-block btn-success">Update</a>
 
 
     <a ng-click="model.deleteWidget(widget)"

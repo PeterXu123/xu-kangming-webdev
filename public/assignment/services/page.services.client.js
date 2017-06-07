@@ -5,7 +5,7 @@
     angular
         .module('WAM')
         .factory('pageService', pageService);
-        function pageService($http){
+        function pageService(){
             var pages = [
 
                     { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
@@ -24,75 +24,46 @@
             };
             return api;
             function createPage(page) {
-                var websiteId = page.websiteId;
-                var url = "/api/website/" + websiteId + "/page"  ;
-                return $http.post(url, page)
-                    .then(function (response) {
-                        return response.data;
-                    })
-
-                // page._id = (new Date()).getTime() + "";
-                // page.created = new Date();
-                // page.updated = new Date();
-                // pages.push(page);
+                page._id = (new Date()).getTime() + "";
+                page.created = new Date();
+                page.updated = new Date();
+                pages.push(page);
             }
             function updatePage(pageId, page) {
-                var url = "/api/page/" + pageId;
-
-                return $http.put(url, page)
-                    .then(function(response) {
-                        return response.data;
-                    });
-
-                // var found = findPageById(pageId);
-               // if (found !== null) {
-               //     found.description = page.description;
-               //     found.name = page.name;
-               //     return found
-               // }
-               // return null;
+               var found = findPageById(pageId);
+               if (found !== null) {
+                   found.description = page.description;
+                   found.name = page.name;
+                   return found
+               }
+               return null;
 
 
 
             }
             function deletePage(pageId) {
-                var url = "/api/page/" + pageId;
-
-                return $http.delete(url)
-                    .then(function(response){
-                        return response.data;
-                    })
-                // var page = pages.find(function (page) {
-                //     return page._id === pageId;
-                // });
-                // var index = pages.indexOf(page);
-                // pages.splice(index, 1);
+                var page = pages.find(function (page) {
+                    return page._id === pageId;
+                });
+                var index = pages.indexOf(page);
+                pages.splice(index, 1);
             }
             function findPageById(pageId) {
-                var url = "/api/page/" + pageId;
-                return $http.get(url)
-                    .then(function (response) {
-                        return response.data;
-                    })
+                return pages.find(function (page) {
+                    return page._id === pageId;
+                });
             }
 
             function findAllPagesForWebsite(websiteId) {
-                var url ="/api/website/" + websiteId + "/page";
-                return  $http.get(url)
-                    .then(function (response) {
-                        return response.data
-                    });
-
-
-                // var resultSet = [];
-                // for(var w in pages) {
-                //     if(pages[w].websiteId === websiteId) {
-                //         // websites[w].created = new Date();
-                //         // websites[w].updated = new Date();
-                //         resultSet.push(pages[w]);
-                //     }
-                // }
-                // return resultSet;
+                var resultSet = [];
+                for(var w in pages) {
+                    if(pages[w].websiteId === websiteId) {
+                        // websites[w].created = new Date();
+                        // websites[w].updated = new Date();
+                        resultSet.push(pages[w]);
+                    }
+                }
+                return resultSet;
             }
 
 

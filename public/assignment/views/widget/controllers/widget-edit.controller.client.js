@@ -10,16 +10,9 @@
             model.pageId = $routeParams['pageId'];
             model.widgetId = $routeParams['widgetId'];
 
-
            function init() {
-                widgetService.findAllWidgetsById(model.pageId)
-                    .then(function(response) {
-                        model.widgets = response;
-                    });
-              widgetService.findWidgetById(model.widgetId)
-                  .then(function(response) {
-                      model.widget = response;
-                  })
+               model.widgets = widgetService.findAllWidgetsById(model.pageId);
+               model.widget = widgetService.findWidgetById(model.widgetId);
            }
            init();
 
@@ -34,12 +27,8 @@
             model.updateVideoWidget=updateVideoWidget;
             model.deleteWidget = deleteWidget;
             function deleteWidget(widget) {
-                widgetService.deleteWidget(model.widgetId)
-                    .then(function() {
-                        $location.url('/user/' + model.userId + '/website/' +
-                            model.websiteId + '/page/' + model.pageId + '/widget');
-
-                    })
+                widgetService.deleteWidget(model.widgetId);
+                $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
 
             }
 
@@ -48,17 +37,12 @@
                     _id : model.widgetId,
                     url : widgetUrl,
                     widgetType: "YOUTUBE",
-                    width: "100%",
-                    pageId: model.pageId
+                    width: "100%"
 
 
                 }
                 widgetService.updateWidget(model.widgetId, widget)
-                    .then(function() {
-                        $location.url('/user/' + model.userId +
-                            '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
-
-                    })
+                $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
 
             }
 
@@ -67,43 +51,27 @@
                     _id : model.widgetId,
                     url : widgetUrl,
                     widgetType: "IMAGE",
-                    width: "100%",
-                    pageId: model.pageId
+                    width: "100%"
 
 
                 }
                 widgetService.updateWidget(model.widgetId, widget)
-                    .then(function() {
-                        $location.url('/user/' + model.userId +
-                            '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
-
-                    })
+                $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
 
             }
-            function updateHeadingWidget(widget) {
-
+            function updateHeadingWidget(widgettext, widgetsize) {
                 var widget ={_id : model.widgetId,
                     widgetType : "HEADING",
-                    text: model.widget.text,
+                    text: widgettext,
                     pageId: model.pageId,
-                    size: model.widget.size
+                    size: widgetsize
 
 
             }
 
 
                 widgetService.updateWidget(model.widgetId, widget)
-                    .then(function(response) {
-                        model.widgets = response;
-                        console.log(response);
-                        console.log(model.widgets);
-
-
-                        $location.url('/user/' + model.userId +
-                            '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
-
-
-                    })
+                $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
 
             }
 
