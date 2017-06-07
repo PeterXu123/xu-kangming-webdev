@@ -5,7 +5,7 @@
     angular
         .module('WAM')
         .factory('userService', userService);
-        function userService($http){
+        function userService(){
 
             var users = [
                 {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
@@ -24,72 +24,63 @@
             };
             return api;
             function findUserByCredentials(username, password) {
+                for(var u in users) {
+                    var user = users[u];
 
-                var url = "/api/user?username="+username+"&password=" + password;
-                return $http.get(url)
-                    .then(function(response) {
-                        return response.data;
-                    })
+                    if (user.username === username &&
+                        user.password === password) {
+                        return user;
+                        break;
 
+                    }
 
-            }
-            function findUserByUsername(username) {
-                var url = "/api/user?username=" + username;
-                return $http
-                    .get(url)
-                    .then(function(response) {
-                        return response.data;
-                    })
-
+                }
+                return null;
             }
             function findUserById(userId) {
-                var url = "/api/user/" + userId;
-               return $http.get(url)
-                   .then(function(response) {
-                       return response.data;
-                   })
-                   // .then(function (response) {
-                   //     return response.data;
-                   // })
-
-                // for (var u in users) {
-                //     return users.find(function (user) {
-                //         return user._id === userId;
-                //     })
-                // }
+                for (var u in users) {
+                    return users.find(function (user) {
+                        return user._id === userId;
+                    })
+                }
             }
             function createUser(user) {
-                var url = "/api/user/";
-                return $http.post(url, user)
-                    .then(function (response) {
-                        return response.data;
-                    })
-                // user._id = (new Date()).getTime() + "";
-                // users.push(user);
+                user._id = (new Date()).getTime() + "";
+                users.push(user);
 
             }
             function updateUser(userId, user) {
-                var url = "/api/user/" + userId;
-                return $http.put(url, user)
-                    .then(function (response) {
-                        return response.data;
-                    });
-
+                var found = findUserByIdById(userId);
+                if (found !== null) {
+                    found.firstName = user.firstName;
+                    found.last = user.lastName;
+                    return found
+                }
+                return null;
 
 
 
 
             }
             function deleteUser(userId) {
-                var url = "/api/user/" + userId;
-                return $http.delete(url)
-                    .then(function (response) {
-                        return response.data;
-                    })
-
+                var user = usrs.find(function (user) {
+                    return user._id === userId
+                });
+                var index = users.indexOf(user);
+                users.splice(index, 1);
 
             }
-
+            function findUserByUsername(username) {
+                var user = users.find(function(user) {
+                    return user.username === username
+                });
+                if (typeof user ==='undefined') {
+                    return null;
+                }
+                else {
+                    return user;
+                }
+            }
 
         }
 })();

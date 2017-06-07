@@ -1,9 +1,5 @@
 (function () {
-        angular.module('WAM', ['ngRoute']);
+    angular.module('WAM', ['ngRoute'])
 
-
-
-
-
-
-})();
+}
+)();
