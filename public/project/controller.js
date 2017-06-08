@@ -2,7 +2,7 @@
     angular.module('TMDB', [])
         .controller("searchMovieController", searchMovieController);
 
-    function searchMovieController(searchService) {
+    function searchMovieController(searchService, $sce) {
         var model = this;
 
 
@@ -14,6 +14,7 @@
 
 
         function searchMovie(name) {
+            var url = "http://www.omdbapi.com/?apikey=8e5e4416&s=" + name
             searchService
                 .findMovieByName(name)
                 .then(function (data) {
@@ -21,6 +22,7 @@
                     model.movies = data.Search;
 
                 })
+             return $sce.trustAsResourceUrl(url);
 
 
         }
