@@ -40,7 +40,7 @@
         function findMovieById(movieId) {
            //  var url = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=b98a14ef11eb47f3e7515a284f1a6371&language=en-US;"
            var url = "https://www.omdbapi.com/?apikey=8e5e4416&i=" + movieId;
-            return $https.jsonp($sce.trustAsResourceUrl(url))
+            return $http.jsonp($sce.trustAsResourceUrl(url))
                 .then(function (response) {
                     return response.data;
                 })
