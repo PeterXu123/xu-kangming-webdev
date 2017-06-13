@@ -55,19 +55,14 @@
         <button type="submit"    class="btn btn-block btn-primary form-control" >Create uploadImage</button>
     </form>
 
+    <a class="btn btn-info btn-block" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/searchnew">
+        Search Add New
+    </a>
+
     <label for="url">URL</label>
     <input id="url"
            ng-model="model.imageUrl"
            class="form-control"/>
-
-    <div class="input-group">
-        <input ng-model="searchText" type="text" class="form-control">
-        <span class="input-group-btn">
-        <a ng-click="model.searchPhotos(searchText)" class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-        </a>
-    </span>
-    </div>
 
 
     <!--<label for="file1">File Upload</label>-->

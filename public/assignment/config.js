@@ -89,6 +89,12 @@
                     controllerAs: 'model'
                 }
             )
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/new/text', {
+                    templateUrl: 'views/widget/templates/widget-input-new.view.client.html',
+                    controller: 'widgetNewController',
+                    controllerAs: 'model'
+                }
+            )
 
 
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/header', {
@@ -107,6 +113,43 @@
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/youtube', {
                     templateUrl: 'views/widget/templates/widget-youtube-edit.view.client.html',
                     controller: 'widgetEditController',
+                    controllerAs: 'model'
+                }
+            )
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/text', {
+                    templateUrl: 'views/widget/templates/widget-input-edit.view.client.html',
+                    controller: 'widgetEditController',
+                    controllerAs: 'model'
+                }
+            )
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/new/text', {
+                    templateUrl: 'views/widget/templates/widget-input-new.view.client.html',
+                    controller: 'widgetNewController',
+                    controllerAs: 'model'
+                }
+            )
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/html', {
+                    templateUrl: 'views/widget/templates/widget-html-edit.view.client.html',
+                    controller: 'widgetEditController',
+                    controllerAs: 'model'
+                }
+            )
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/new/html', {
+                    templateUrl: 'views/widget/templates/widget-html-new.view.client.html',
+                    controller: 'widgetNewController',
+                    controllerAs: 'model'
+                }
+            )
+
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/search', {
+                    templateUrl: 'views/widget/templates/widget-flickr-search.view.client.html',
+                    controller: 'flickrController',
+                    controllerAs: 'model'
+                }
+            )
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/searchnew', {
+                    templateUrl: 'views/widget/templates/widget-flickr-search.new.view.client.html',
+                    controller: 'flickrController',
                     controllerAs: 'model'
                 }
             )

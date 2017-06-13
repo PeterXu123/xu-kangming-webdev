@@ -9,11 +9,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(app.express.static(__dirname + '/public'));
 
 require ("./test/app.js")(app);
-
-require('./assignment/app');
-
-require("./assignment/app.js");
-
+require ('./assignment/app');
+require ('./project/app');
  // require('public/assignment/directives/app.js')
 
 

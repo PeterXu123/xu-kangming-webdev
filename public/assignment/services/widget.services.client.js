@@ -66,8 +66,11 @@
             // }
             // return null;
         }
-        function deleteWidget(widgetId) {
-            var url = "/api/widget/" + widgetId;
+        function deleteWidget(widget) {
+            var pageId = widget.pageId;
+            var widgetId = widget.widgetId;
+            console.log(widgetId);
+            var url = "/api/page/"+ pageId +"/widget/" + widgetId;
             return $http.delete(url)
                 .then(function(response) {
                     return response.data;

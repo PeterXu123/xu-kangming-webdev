@@ -35,7 +35,7 @@
 
         function deleteUser(user) {
 
-            userService.deleteUser(user._id)
+            userService.deleteUser(user)
                 .then(function() {
                     $location.url('/');
                 },

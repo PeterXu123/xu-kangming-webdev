@@ -20,16 +20,52 @@
             model.createVideoWidget = createVideoWidget;
             model.createImageWidget = createImageWidget;
             model.createHeadingWidget = createHeadingWidget;
+            model.createTextWidget = createTextWidget;
+            model.createHtmlWidget = createHtmlWidget;
             model.trustThisContent = trustThisContent;
             model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
             model.getWidgetUrlForType = getWidgetUrlForType;
             model.editWidget = editWidget;
+            function createTextWidget(widget) {
+                var widget = {
+                    widgetType : "INPUT",
+                    _page: model.pageId,
+                    placeholder: model.widget.placeholder,
+                    formatted: model.widget.formatted,
+                    text: model.widget.text
+
+                }
+                widgetService.createWidget(model.pageId, widget)
+                    .then(function(response){
+                        console.log(response)
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
+                    })
+
+            }
+            function createHtmlWidget(widget) {
+                var widget1 = {
+                    _id : model.widgetId,
+                    widgetType: "HTML",
+                    text: model.widget.text,
+                    _page: model.pageId
+
+
+
+                }
+                widgetService.createWidget(model.pageId, widget1)
+                    .then(function(response){
+                        console.log(response)
+                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
+                    })
+
+            }
+
             function createHeadingWidget(text, size) {
                 var widget = {
                     widgetType : "HEADING",
                     text : text,
                     size : size,
-                    pageId : model.pageId
+                    _page : model.pageId
             }
 
                 widgetService.createWidget(model.pageId, widget)
@@ -43,7 +79,7 @@
             function createImageWidget(widget) {
                 var widget = {
                     widgetType : "IMAGE",
-                    pageId : model.pageId,
+                    _page : model.pageId,
                     width : "100%",
                     url: model.imageUrl
                 }
@@ -56,9 +92,10 @@
                     })
 
             }
+
             function createVideoWidget(widget) {
                 var widget = {widgetType : "YOUTUBE",
-                    pageId : model.pageId,
+                    _page : model.pageId,
 
                     width : "100%",
                     url: model.videoUrl}

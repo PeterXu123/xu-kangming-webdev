@@ -32,9 +32,18 @@
             model.updateHeadingWidget=updateHeadingWidget;
             model.updateImageWidget=updateImageWidget;
             model.updateVideoWidget=updateVideoWidget;
+            model.updateHtmlWidget=updateHtmlWidget;
+            model.updateTextWidget=updateTextWidget;
+
             model.deleteWidget = deleteWidget;
             function deleteWidget(widget) {
-                widgetService.deleteWidget(model.widgetId)
+                var widget1 = {};
+
+
+                widget1.pageId = model.pageId;
+                widget1.widgetId = model.widgetId;
+
+                widgetService.deleteWidget(widget1)
                     .then(function() {
                         $location.url('/user/' + model.userId + '/website/' +
                             model.websiteId + '/page/' + model.pageId + '/widget');
@@ -42,7 +51,50 @@
                     })
 
             }
+            function updateHtmlWidget(widget) {
+                var widget1 = {
+                    _id : model.widgetId,
+                    widgetType: "HTML",
+                    text: model.widget.text
 
+
+
+                }
+                widgetService.updateWidget(model.widgetId, widget1)
+                    .then(function() {
+                        $location.url('/user/' + model.userId +
+                            '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
+
+                    })
+
+
+
+            }
+            function updateTextWidget(widget) {
+                var text = {
+                    _id : model.widgetId,
+                    widgetType: "INPUT",
+                    placeholder: model.widget.placeholder,
+                    formatted: model.widget.formatted,
+                    text: model.widget.text
+                }
+
+
+                widgetService.updateWidget(model.widgetId, text)
+                    .then(function() {
+
+
+                        $location.url('/user/' + model.userId +
+                            '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
+
+                    }
+                    , function(err) {
+                        console.log(err);
+                        })
+
+
+
+            }
             function updateVideoWidget(widgetUrl) {
                 var widget = {
                     _id : model.widgetId,
@@ -95,7 +147,7 @@
                 widgetService.updateWidget(model.widgetId, widget)
                     .then(function(response) {
                         model.widgets = response;
-                        console.log(response);
+                        console.log("123321");
                         console.log(model.widgets);
 
 
