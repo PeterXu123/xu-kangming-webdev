@@ -11,11 +11,7 @@
                     currentUser: checkCurrentUser
                 }
             })
-            .when('/profile', {
-                templateUrl:'views/user/templates/login.view.client.html',
-                controller: 'loginController',
-                controllerAs: 'vm'
-            })
+
             .when('/login', {
                 templateUrl: 'views/user/templates/login.view.client.html',
                 controller: 'loginController',

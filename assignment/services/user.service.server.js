@@ -12,14 +12,21 @@ passport.serializeUser(serializeUser);
 passport.deserializeUser(deserializeUser);
 
 
+// var facebookConfig = {
+//
+//     clientID     : "382045658859401",
+//     clientSecret : "68342bb2ad24d90000f84baa33b00d5e",
+//     callbackURL  :  "/auth/facebook/callback",
+//     profileFields: ['email', 'id', 'name', 'displayName']
+// };
+
 var facebookConfig = {
 
-    clientID     : "382045658859401",
-    clientSecret : "68342bb2ad24d90000f84baa33b00d5e",
-    callbackURL  :  "/auth/facebook/callback",
+    clientID     : process.env.FACEBOOK_CLIENT_ID,
+    clientSecret : process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL  : process.env.FACEBOOK_CALLBACK_URL,
     profileFields: ['email', 'id', 'name', 'displayName']
 };
-
 
 var FacebookStrategy = require('passport-facebook').Strategy;
 passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
@@ -78,7 +85,7 @@ function localStrategy(username, password, done) {
         .findUserByCredentials(username, password)
         .then(
             function(user) {
-                if (!user && !bcrypt.compareSync(password, user.password)) { return done(null, false); }
+                if (!user) { return done(null, false); }
                 return done(null, user);
             },
             function(err) {

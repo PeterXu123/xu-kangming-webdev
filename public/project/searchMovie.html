@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TMDB">
+<head>
+    <meta charset="UTF-8">
+
+    <script src="../assignment/vendor/angular/angular.min.js"> </script>
+
+    <link href="../assignment/vendor/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assignment/vendor/css/bootstrap/theme.css" rel="stylesheet">
+
+    <link href="../assignment/css/style.css" rel="stylesheet"/>
+    <script src="app.js"> </script>
+    <script src="controller.js"> </script>
+    <script src="movie.server.client.js"></script>
+
+
+</head>
+<body>
+<div class="container-fluid"
+     ng-controller="searchMovieController as model">
+
+
+    <h1>OMDB POC</h1>
+    <div class="row">
+        <div class="col-xs-6">
+            <h2>Search</h2>
+            <input ng-model="model.title"
+                   class="form-control"
+                   placeholder="movie title">
+
+            <button class="btn btn-primary btn-block"
+                    ng-click="model.searchMovie(model.title)">
+                Search
+            </button>
+
+            <h2>Search Results</h2>
+
+            <ul class="list-group">
+                <li ng-click="model.searchMovieById(movie.imdbID)"
+                    ng-repeat="movie in model.movies"
+                    class="list-group-item">
+
+                    <img ng-src="{{movie.Poster}}" width="50px"/>
+                    {{movie.Title}}
+                    {{movie.imdbID}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-xs-6">
+            <h2>Details</h2>
+            <h3>{{model.movie.title}}</h3>
+            <img ng-src="{{model.movie.Poster}}" width="200px"/>
+            <ul>
+
+                <ol ng-repeat="director in model.movie.Director.split(',')">
+                    <h3>Director: {{director}}</h3>
+                </ol>
+            </ul>
+            <!--<h3> Director: {{model.movie.Director}}</h3>-->
+            <p>{{model.movie.Plot}}</p>
+
+            <ul>
+
+                <li ng-repeat="actor in model.movie.Actors.split(',')">
+                    Actor: {{actor}}
+                </li>
+            </ul>
+            <a ng-show="model.movie.imdbID" class="btn btn-primary btn-block"
+               href="http://www.imdb.com/title/{{model.movie.imdbID}}">Link</a>
+
+
+
+
+            <hr/>
+            {{model.movie}}
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+
+</html>
+<!--<body>-->
+    <!--<h1>Project Home Page</h1>-->
+
+<!--<div class="container-fluid"-->
+     <!--ng-controller="searchMovieController as model">-->
+    <!--<h1> OMDB POC</h1>-->
+    <!--<div class="row">-->
+        <!--<div class="col-xs-6">-->
+            <!--<label for="moviename"> MovieName</label>-->
+            <!--<input ng-model="model.movie.moviename"-->
+
+                   <!--type = "text"-->
+                   <!--class="form-control"-->
+                   <!--id="moviename" placeholder="Moviename">-->
+            <!--<button class="btn btn-primary btn-block" ng-click="model.searchMovie(model.movie.moviename)">-->
+                <!--Search-->
+            <!--</button>-->
+
+            <!--<h2> Search Results</h2>-->
+            <!--<ul class="list-group">-->
+                <!--<li ng-click="model.movie = movie" ng-repeat="movie in models.movies" class="list-group-item">-->
+                    <!--<img ng-src="{{movie.Poster}}" width="50px"/>-->
+                    <!--{{movie.Title}}-->
+                    <!--{{movie.imdbID}}-->
+
+
+
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+
+        <!--<div class="col-xs-6">-->
+            <!--<h2>Details</h2>-->
+            <!--<h3> {{model.movie.Title}}</h3>-->
+            <!--<img ng-src="{{model.movie.Poster}}" width=200px">-->
+                 <!--<h3> {{model.movie.Director}}</h3>-->
+            <!--<p>{{model.movie.Plot}} </p>-->
+            <!--<h3> Actors</h3>-->
+             <!--{{model.movie.Actors}}-->
+            <!--<ul>-->
+                <!--<li ng-repeat = "actor in model.movie.Actors.split(',')">-->
+                    <!--{{actor}}-->
+                <!--</li>-->
+
+            <!--</ul>-->
+            <!--<hr/>-->
+            <!--{{model.movie.Actors}}-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+
+
+    <!--{{model.movies}}-->
+
+
+    <!--&lt;!&ndash;<a ng-click="model.searchMovie(model.movie.moviename)"&ndash;&gt;-->
+       <!--&lt;!&ndash;class="btn btn-block btn-success">&ndash;&gt;-->
+        <!--&lt;!&ndash;SearchMoviesbyName&ndash;&gt;-->
+    <!--&lt;!&ndash;</a>&ndash;&gt;-->
+       <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+    <!--&lt;!&ndash;<label for="movieid"> MovieId</label>&ndash;&gt;-->
+    <!--&lt;!&ndash;<input ng-model="model.movie.movieid"&ndash;&gt;-->
+    <!--&lt;!&ndash;type = "text"&ndash;&gt;-->
+    <!--&lt;!&ndash;class="form-control"&ndash;&gt;-->
+    <!--&lt;!&ndash;id="movieid" placeholder="Movieid">&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<a ng-click="model.searchMovieById(model.movie.movieid)"&ndash;&gt;-->
+    <!--&lt;!&ndash;class="btn btn-block btn-success">&ndash;&gt;-->
+    <!--&lt;!&ndash;SearchMoviebyId&ndash;&gt;-->
+    <!--&lt;!&ndash;</a>&ndash;&gt;-->
+
+
+
+    <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+        <!--&lt;!&ndash;<label for="tvname"> TvName</label>&ndash;&gt;-->
+        <!--&lt;!&ndash;<input ng-model="model.tv.tvname"&ndash;&gt;-->
+               <!--&lt;!&ndash;type = "text"&ndash;&gt;-->
+               <!--&lt;!&ndash;class="form-control"&ndash;&gt;-->
+               <!--&lt;!&ndash;id="tvname" placeholder="tvname">&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+
+    <!--&lt;!&ndash;<a ng-click="model.searchTv(model.tv.tvname)"&ndash;&gt;-->
+       <!--&lt;!&ndash;class="btn btn-block btn-success">&ndash;&gt;-->
+        <!--&lt;!&ndash;SearchTvsbyName&ndash;&gt;-->
+    <!--&lt;!&ndash;</a>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+        <!--&lt;!&ndash;<label for="tvid"> TvId</label>&ndash;&gt;-->
+        <!--&lt;!&ndash;<input ng-model="model.tv.tvid"&ndash;&gt;-->
+               <!--&lt;!&ndash;type = "text"&ndash;&gt;-->
+               <!--&lt;!&ndash;class="form-control"&ndash;&gt;-->
+               <!--&lt;!&ndash;id="tvid" placeholder="tvid">&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<a ng-click="model.searchTvById(model.tv.tvid)"&ndash;&gt;-->
+       <!--&lt;!&ndash;class="btn btn-block btn-success">&ndash;&gt;-->
+        <!--&lt;!&ndash;SearchTvbyId&ndash;&gt;-->
+    <!--&lt;!&ndash;</a>&ndash;&gt;-->
+    <!--&lt;!&ndash;{{model.content}}&ndash;&gt;-->
+
+    <!--&lt;!&ndash;<a class="btn btn-primary btn-block"&ndash;&gt;-->
+       <!--&lt;!&ndash;href="{{model.homepage}}">Websites</a>&ndash;&gt;-->
+
+
+
+
+
+
+
+<!--</div>-->
+
+
+<!--</body>-->
+</html>
