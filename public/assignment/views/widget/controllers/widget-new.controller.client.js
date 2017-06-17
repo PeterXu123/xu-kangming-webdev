@@ -3,9 +3,9 @@
         .module('WAM')
         .controller('widgetNewController', widgetNewController);
 
-        function widgetNewController($sce, $location, $routeParams, widgetService) {
+        function widgetNewController(currentUser, $sce, $location, $routeParams, widgetService) {
             var model = this;
-            model.userId = $routeParams['userId'];
+            model.userId = currentUser._id;
             model.websiteId = $routeParams['websiteId'];
             model.pageId = $routeParams['pageId'];
 
@@ -32,19 +32,21 @@
                     _page: model.pageId,
                     placeholder: model.widget.placeholder,
                     formatted: model.widget.formatted,
-                    text: model.widget.text
+                    text: model.widget.text,
+                    rows: model.widget.rows
+
 
                 }
                 widgetService.createWidget(model.pageId, widget)
                     .then(function(response){
                         console.log(response)
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
+                        $location.url('/user/' +  'website/' + model.websiteId + '/page/' + model.pageId + '/widget')
                     })
 
             }
             function createHtmlWidget(widget) {
                 var widget1 = {
-                    _id : model.widgetId,
+
                     widgetType: "HTML",
                     text: model.widget.text,
                     _page: model.pageId
@@ -55,7 +57,7 @@
                 widgetService.createWidget(model.pageId, widget1)
                     .then(function(response){
                         console.log(response)
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
+                        $location.url('/user/' +  'website/' + model.websiteId + '/page/' + model.pageId + '/widget')
                     })
 
             }
@@ -71,7 +73,7 @@
                 widgetService.createWidget(model.pageId, widget)
                     .then(function(response){
                         console.log(response)
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
+                        $location.url('/user/' + 'website/' + model.websiteId + '/page/' + model.pageId + '/widget')
                     })
                 // console.log("fdfd");
 
@@ -87,7 +89,7 @@
 
                 widgetService.createWidget(model.pageId, widget)
                     .then(function() {
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
+                        $location.url('/user/' + 'website/' + model.websiteId + '/page/' + model.pageId + '/widget')
 
                     })
 
@@ -102,7 +104,7 @@
 
                 widgetService.createWidget(model.pageId, widget)
                     .then(function() {
-                        $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
+                        $location.url('/user/'  + 'website/' + model.websiteId + '/page/' + model.pageId + '/widget');
 
                     })
 
@@ -132,7 +134,7 @@
                 // if (type==='YOUTUBE') {
                 //     $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/editYoutube');
                 // }
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/edit');
+                    $location.url('/user/' + 'website/' + model.websiteId + '/page/' + model.pageId + '/widget/edit');
 
             }
 

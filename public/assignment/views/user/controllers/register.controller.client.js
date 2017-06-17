@@ -33,9 +33,9 @@
                             username: username,
                             password: password
                         };
-                        userService.createUser(newUser)
+                        userService.register(newUser)
                             .then(function (response) {
-                                $location.url('/user/' + response._id);
+                                $location.url('/profile');
                             })
 
 

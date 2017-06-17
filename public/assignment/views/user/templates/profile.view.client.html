@@ -9,7 +9,7 @@
                 Profile
             </a>
             <p class="navbar-text pull-right">
-                <a href="#!/user/{{model.userId}}">
+                <a href="#!/profile">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </p>
@@ -53,26 +53,31 @@
     </form>
 
     <a class="btn btn-primary btn-block"
-       href="#!/user/{{model.user._id}}/website">Websites</a>
+       href="#!/user/website">Websites</a>
+       <!--href="#!/user/{{model.user._id}}/website">Websites</a>-->
+
     <a  ng-click="model.update(model.user)"
         class="btn btn-primary btn-block"
 
         >Update</a>
 
-    <a class="btn btn-danger  btn-block"
+    <a ng-click="model.logout()"  class="btn btn-danger  btn-block"
 
-       href="#!/">Logout</a>
-    <a class="btn btn-danger  btn-block"
-       ng-click="model.deleteUser(model.userId)"
+       >Logout</a>
 
-       href="#!/">DeleteUser</a>
+
+
+    <a class="btn btn-danger  btn-block"
+       ng-click="model.unregister()"
+
+       href="#!/">Unregister User</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container">
         <div class="row navbar-text">
             <div class="col-xs-3 text-center">
-                <a href="#!/user/{{model.userId}}">
+                <a href="#!/profile">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

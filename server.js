@@ -1,4 +1,27 @@
 var app = require('./express');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var passport = require('passport');
+
+
+
+app.use(cookieParser());
+app.use(session({ secret: "put some text here" }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('/api/whatever/session', function(req, res) {
+    res.send(req.session)
+})
+app.get('/api/whatever/session/:name/:value', function(req, res) {
+    var name = req.params.name;
+    var value = req.params.value;
+    var obj = {name: value};
+    req.session[name] = obj;
+
+    console.log(req.session);
+    res.send(req.session);
+})
 
 require('./utilities/filelist');
 var bodyParser = require('body-parser');

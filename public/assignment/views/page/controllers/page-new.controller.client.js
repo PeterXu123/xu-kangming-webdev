@@ -6,10 +6,10 @@
 
 
 
-    function pageNewController( $routeParams, pageService, $location) {
+    function pageNewController(currentUser, $routeParams, pageService, $location) {
         var model = this;
         model.websiteId = $routeParams['websiteId'];
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.createPage = createPage;
 
         function init() {
@@ -24,10 +24,14 @@
 
 
         function createPage(page) {
+            if ( typeof page ==='undefined') {
+                model.error = "Can't add this page";
+                return
+            }
             page.websiteId = model.websiteId;
             pageService.createPage(page)
                 .then(function() {
-                    $location.url('/user/'+model.userId+'/website/' + model.websiteId + '/page');
+                    $location.url('/user/'+'website/' + model.websiteId + '/page');
 
                 })
         }

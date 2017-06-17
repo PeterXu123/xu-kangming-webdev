@@ -53,11 +53,15 @@
 
 
             var url = "/api/widget/" + widgetId;
+            console.log(widget)
             return  $http.put(url, widget)
                 .then(function(response) {
                     console.log("goal");
                     console.log(response.data);
                     return response.data;
+                },
+                function(err) {
+                    console.log(err);
                 })
             // var found = findWidgetById(widgetId);
             // if (found !== null) {

@@ -1,5 +1,5 @@
 (function () {
-        angular.module('WAM', ['ngRoute', 'Draggable']);
+        angular.module('WAM', ['ngRoute', 'Draggable', 'textAngular']);
 
 
 

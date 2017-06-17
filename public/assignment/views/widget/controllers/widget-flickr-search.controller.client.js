@@ -5,12 +5,12 @@
     angular
         .module('WAM')
         .controller('flickrController', flickrController);
-    function flickrController($routeParams, $location, flickrService,
+    function flickrController(currentUser, $routeParams, $location, flickrService,
     widgetService) {
 
         var model = this;
 
-        model.userId = $routeParams.userId;
+        model.userId = currentUser._id;
         model.websiteId = $routeParams.websiteId;
         model.pageId = $routeParams.pageId;
         model.widgetId = $routeParams.widgetId;
@@ -67,7 +67,7 @@
 
             widgetService.createWidget(model.pageId, widget)
                 .then(function() {
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget')
+                    $location.url('/user/' + 'website/' + model.websiteId + '/page/' + model.pageId + '/widget')
 
                 })
 
@@ -81,7 +81,7 @@
                 .updateWidget(model.widgetId, widget)
                 .then(function (response) {
                     console.log("chui a chuia ")
-                    $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + widget._id + '/image');
+                    $location.url("/user/"  + "website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + widget._id + '/image');
                 })
         }
         function selectAdd(response, url) {
@@ -91,7 +91,7 @@
                 .createWidget(model.pageId, model.widget)
                 .then(function (response) {
                     console.log("chui a chuia1 ")
-                    $location.url("/user/" + model.userId + "/website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + widget._id + '/new/image');
+                    $location.url("/user/" +  "website/" + model.websiteId + "/page/" + model.pageId + "/widget/" + widget._id + '/new/image');
                 })
         }
 

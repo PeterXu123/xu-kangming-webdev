@@ -3,9 +3,9 @@
         .module('WAM')
         .controller('widgetEditController', widgetEditController);
 
-        function widgetEditController($sce, $location, $routeParams, widgetService) {
+        function widgetEditController(currentUser, $sce, $location, $routeParams, widgetService) {
             var model = this;
-            model.userId = $routeParams['userId'];
+            model.userId = currentUser._id;
             model.websiteId = $routeParams['websiteId'];
             model.pageId = $routeParams['pageId'];
             model.widgetId = $routeParams['widgetId'];
@@ -45,13 +45,14 @@
 
                 widgetService.deleteWidget(widget1)
                     .then(function() {
-                        $location.url('/user/' + model.userId + '/website/' +
+                        $location.url('/user'  + '/website/' +
                             model.websiteId + '/page/' + model.pageId + '/widget');
 
                     })
 
             }
             function updateHtmlWidget(widget) {
+                console.log(widget);
                 var widget1 = {
                     _id : model.widgetId,
                     widgetType: "HTML",
@@ -60,11 +61,16 @@
 
 
                 }
+                console.log(model.widgetId)
+                console.log(widget1);
                 widgetService.updateWidget(model.widgetId, widget1)
                     .then(function() {
-                        $location.url('/user/' + model.userId +
+                        $location.url('/user' +
                             '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
 
+                    },
+                    function(err) {
+                        console.log(err);
                     })
 
 
@@ -76,20 +82,26 @@
                     widgetType: "INPUT",
                     placeholder: model.widget.placeholder,
                     formatted: model.widget.formatted,
-                    text: model.widget.text
+                    text: model.widget.text,
+                    rows: model.widget.rows
                 }
+
+
+
+
 
 
                 widgetService.updateWidget(model.widgetId, text)
                     .then(function() {
 
 
-                        $location.url('/user/' + model.userId +
+                            console.log("hey")
+                        $location.url('/user' +
                             '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
 
                     }
                     , function(err) {
-                        console.log(err);
+                        console.log("123");
                         })
 
 
@@ -107,7 +119,7 @@
                 }
                 widgetService.updateWidget(model.widgetId, widget)
                     .then(function() {
-                        $location.url('/user/' + model.userId +
+                        $location.url('/user' +
                             '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
 
                     })
@@ -126,7 +138,7 @@
                 }
                 widgetService.updateWidget(model.widgetId, widget)
                     .then(function() {
-                        $location.url('/user/' + model.userId +
+                        $location.url('/user' +
                             '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
 
                     })
@@ -151,7 +163,7 @@
                         console.log(model.widgets);
 
 
-                        $location.url('/user/' + model.userId +
+                        $location.url('/user' +
                             '/website/' + model.websiteId + '/page/' + model.pageId + '/widget');
 
 

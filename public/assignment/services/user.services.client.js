@@ -17,12 +17,72 @@
                 findUserById: findUserById,
                 findUserByUsername: findUserByUsername,
                 findUserByCredentials: findUserByCredentials,
+                findAllUsers: findAllUsers,
+                login: login,
+                checkLoggedIn: checkLoggedIn,
+                checkAdmin: checkAdmin,
+                unregister: unregister,
+                logout: logout,
+                register: register,
                 createUser: createUser,
                 updateUser: updateUser,
                 deleteUser: deleteUser
 
             };
             return api;
+
+            function register(user) {
+                var url = "/api/register";
+                return $http.post(url, user)
+                    .then(function(response) {
+                        return response.data;
+                    })
+            }
+            function logout() {
+                var url = "/api/logout";
+                return $http.post(url)
+                    .then(function(response) {
+                        return response.data;
+                    })
+            }
+            function checkLoggedIn() {
+                var url = "/api/checkLoggedIn";
+                return $http.get(url)
+                    .then(function(response) {
+                        return response.data;
+                    })
+
+            }
+            function unregister() {
+                var url = "/api/unregister";
+                return $http.post(url)
+                    .then(function (response) {
+                        return response.data;
+                    })
+
+            }
+
+
+            function checkAdmin() {
+                var url = "/api/checkAdmin";
+                return $http.get(url)
+                    .then(function(response) {
+                        return response.data;
+                    })
+
+            }
+            function login(username, password) {
+                var url = "/api/login";
+                var credentials = {
+                    username: username,
+                    password: password
+                };
+                return $http.post(url, credentials)
+                    .then(function(response) {
+                        return response.data;
+                    })
+
+            }
             function findUserByCredentials(username, password) {
 
                 var url = "/api/user?username="+username+"&password=" + password;
@@ -39,6 +99,18 @@
                     .get(url)
                     .then(function(response) {
                         return response.data;
+                    })
+
+            }
+            function findAllUsers() {
+
+                var url = "/api/user";
+                return $http.get(url)
+                    .then(function(response) {
+
+
+
+                        return (response.data);
                     })
 
             }
@@ -59,9 +131,11 @@
                 // }
             }
             function createUser(user) {
+
                 var url = "/api/user/";
                 return $http.post(url, user)
                     .then(function (response) {
+                        console.log("Hey")
                         return response.data;
                     })
                 // user._id = (new Date()).getTime() + "";

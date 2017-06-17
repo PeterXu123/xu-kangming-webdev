@@ -3,12 +3,12 @@
         .module('WAM')
         .controller('websiteEditController', websiteEditController);
 
-    function websiteEditController($routeParams,
+    function websiteEditController(currentUser, $routeParams,
                                   websiteService,
                                   $location) {
 
         var model = this;
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
         model.websiteId= $routeParams.websiteId;
 
         // event handlers
@@ -33,11 +33,16 @@
             website.developerId = model.userId;
             websiteService.createWebsite(website)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website');
+                    $location.url('/user/'+'website');
                 })
 
         }
         function updateWebsite(website) {
+            console.log(website);
+            if ( typeof website ==='undefined' ||(website.name === "" && website.description === "")) {
+                model.error = "Can't update website to empty content";
+                return
+            }
 
 
 
@@ -53,7 +58,7 @@
             website.developerId = model.userId;
             websiteService.deleteWebsite(website)
                 .then(function() {
-                    $location.url('/user/' + model.userId + '/website');
+                    $location.url('/user'  + '/website');
                 })
 
         }

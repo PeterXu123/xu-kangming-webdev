@@ -5,7 +5,7 @@
 
             <p class="navbar-text pull-left">
 
-                <a href="#!/user/{{model.userId}}" >
+                <a href="#!/profile" >
                         <span class="glyphicon glyphicon-arrow-left"></span>
                     </a>
 
@@ -22,7 +22,7 @@
 
             <p class="navbar-text pull-right">
 
-                <a href="#!/user/{{model.userId}}/website/new" >
+                <a href="#!/user/website/new" >
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
 
@@ -49,7 +49,7 @@
                     Accessed
                 </div>
                 <div class="col-sm-1">
-                    <a href="#!/user/{{model.userId}}/website/new" style="color: #fff;">
+                    <a href="#!/user/website/new" style="color: #fff;">
                         <span class="glyphicon glyphicon-plus pull-right" > </span>
                     </a>
 
@@ -64,7 +64,7 @@
             <div class="row">
                 <div class="col-lg-5 col-md-8 col-xs-11">
 
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
+                    <a href="#!/user/website/{{website._id}}/page">
                         {{website.name}}
 
                     </a>
@@ -76,7 +76,7 @@
                     {{website.dateUpdated |date}}
                 </div>
                 <div class="col-xs-1">
-                    <a href="#!/user/{{model.userId}}/website/{{website._id}}">
+                    <a href="#!/user/website/{{website._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>
@@ -96,7 +96,7 @@
     <div class="container">
         <div class="row navbar-text">
             <div class="col-xs-3 text-center">
-                <a href="#!/user/{{model.userId}}">
+                <a href="#!/profile">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

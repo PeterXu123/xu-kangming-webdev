@@ -6,11 +6,11 @@
 
 
 
-    function pageEditController( $routeParams, $location,  pageService) {
+    function pageEditController(currentUser,  $routeParams, $location,  pageService) {
         var model = this;
         model.websiteId = $routeParams['websiteId'];
         model.pageId = $routeParams.pageId;
-        model.userId = $routeParams['userId'];
+        model.userId = currentUser._id;
 
         model.createPage = createPage;
         model.updatePage = updatePage;
@@ -32,7 +32,7 @@
             page.websiteId = model.websiteId;
             pageService.createPage(page)
                 .then(function() {
-                    $location.url('/user/'+model.userId+'/website/' + model.websiteId + '/page');
+                    $location.url('/user/'+'/website/' + model.websiteId + '/page');
 
                 })
         }
@@ -45,6 +45,11 @@
             //
             //
             // }
+            console.log(page);
+            if ( typeof page ==='undefined' ||(page.name === "" && page.description === "")) {
+                model.error = "Can't update page to empty content";
+                return
+            }
             pageService.updatePage(model.pageId, page)
                 .then(function() {
                     model.message = "page updated good";
@@ -56,7 +61,7 @@
             page.websiteId = model.websiteId;
             pageService.deletePage(page)
                 .then(function() {
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+                    $location.url('/user/' +  'website/' + model.websiteId + '/page');
 
                 })
         }

@@ -4,9 +4,15 @@ var mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
     username: {type: String, unique: true},
-    password: {type: String, unique: true},
+    password: String,
     firstName: String,
     lastName: String,
+    roles: [{type:String, default:'USER', enum:['USER','ADMIN']
+    }],
+    facebook: {
+        id:    String,
+        token: String
+    },
     email: String,
     phone: String,
      websites: [{type: mongoose.Schema.Types.ObjectId, ref: "WebsiteModel"}],

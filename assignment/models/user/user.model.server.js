@@ -2,18 +2,30 @@ var mongoose = require('mongoose');
 var userSchema = require('./user.schema.server');
 var userModel = mongoose.model('UserModel', userSchema);
 
-userModel.creatUser = createUser;
+userModel.createUser = createUser;
 userModel.findUserById = findUserById;
-userModel.findAllUser = findAllUser;
+userModel.findAllUsers = findAllUsers;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserByCredentials = findUserByCredentials;
+userModel.findUserByFacebookId = findUserByFacebookId;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 userModel.addWebsite = addWebsite;
 userModel.deleteWebsite = deleteWebsite;
 module.exports = userModel;
 
+function findUserByFacebookId(facebookId) {
+    return userModel.findOne({'facebook.id' : facebookId});
+}
+
 function createUser(user) {
+   if(user.roles) {
+       user.roles = user.roles.split(',');
+
+   }
+   else {
+       user.roles =['USER'];
+   }
 
     return userModel.create(user);
 }
@@ -22,7 +34,7 @@ function findUserById(userId) {
     return userModel.findById(userId);
 }
 
-function findAllUser() {
+function findAllUsers() {
     return userModel.find();
 }
 function findUserByUsername(username) {

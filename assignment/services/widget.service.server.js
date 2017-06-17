@@ -300,7 +300,7 @@ function updateWidget(req, res) {
 
                 }
                 if (found.widgetType == "IMAGE") {
-                    found.url = aim.url;
+
                     widgetModel
                         .updateWidget(widgetId, found)
                         .then(function() {
@@ -309,7 +309,7 @@ function updateWidget(req, res) {
                         })
                 }
                 if (found.widgetType == "YOUTUBE") {
-                    found.url = aim.url
+                    found.url = aim.url;
                     widgetModel
                         .updateWidget(widgetId, found)
                         .then(function() {
@@ -317,6 +317,30 @@ function updateWidget(req, res) {
                             return;
                         })
                 }
+            }
+            if (found.widgetType == "INPUT") {
+                found.formatted = aim.formatted;
+                found.text = aim.text;
+                found.rows = aim.rows;
+                found.placeholder = aim.placeholder;
+                widgetModel
+                    .updateWidget(widgetId, found)
+                    .then(function() {
+                        res.sendStatus(200);
+                        return;
+                    })
+            }
+            if (found.widgetType == "HTML") {
+
+                found.text = aim.text;
+
+
+                widgetModel
+                    .updateWidget(widgetId, found)
+                    .then(function() {
+                        res.sendStatus(200);
+                        return;
+                    })
             }
             else {
                 res.sendStatus(404);

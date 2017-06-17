@@ -48,9 +48,9 @@
 
 
 
-        function widgetListController($sce, $location, $routeParams, widgetService) {
+        function widgetListController(currentUser, $sce, $location, $routeParams, widgetService) {
             var model = this;
-            model.userId = $routeParams['userId'];
+            model.userId = currentUser._id;
             model.websiteId = $routeParams['websiteId'];
             model.pageId = $routeParams['pageId'];
            function init() {
@@ -69,18 +69,21 @@
             model.editWidget = editWidget;
             function editWidget(widget) {
                 if (widget.widgetType === "HEADING") {
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id +'/header')
+                    $location.url('/user/' +  'website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id +'/header')
 
 
                 }
                 if (widget.widgetType === "IMAGE") {
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' +widget._id+ '/image');
+                    $location.url('/user/' +  'website/' + model.websiteId + '/page/' + model.pageId + '/widget/' +widget._id+ '/image');
                 }
                 if (widget.widgetType === "YOUTUBE") {
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id+'/youtube');
+                    $location.url('/user/' +  'website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id+'/youtube');
                 }
                 if (widget.widgetType === "INPUT") {
-                    $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id+'/text');
+                    $location.url('/user/' +  'website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id+'/text');
+                }
+                if (widget.widgetType === "HTML") {
+                    $location.url('/user/' +  'website/' + model.websiteId + '/page/' + model.pageId + '/widget/' + widget._id+'/html');
                 }
 
 
@@ -93,6 +96,7 @@
                 return $sce.trustAsResourceUrl(embedUrl);
             }
             function trustThisContent(html) {
+                console.log(html);
                 return $sce.trustAsHtml(html);
 
 

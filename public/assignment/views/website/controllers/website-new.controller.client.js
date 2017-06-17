@@ -3,13 +3,13 @@
         .module('WAM')
         .controller('websiteNewController', websiteNewController);
 
-    function websiteNewController($routeParams,
+    function websiteNewController(currentUser, $routeParams,
                                   websiteService,
                                   $location) {
 
         var model = this;
-        model.userId = $routeParams['userId'];
-        model.websiteId= $routeParams.websiteId;
+        model.userId = currentUser._id;
+
 
 
 
@@ -29,10 +29,17 @@
 
         // implementation
         function createWebsite(website) {
+            console.log(website);
+            if ( typeof website ==='undefined') {
+                model.error = "Can't add this website";
+                return
+            }
+            // console.log(website)
             website.developerId = model.userId;
+
             websiteService.createWebsite(website)
                 .then(function () {
-                    $location.url('/user/'+model.userId+'/website');
+                    $location.url('/user/website');
                 })
         }
     }
