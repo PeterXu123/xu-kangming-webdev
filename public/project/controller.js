@@ -14,7 +14,7 @@
 
 
         function searchMovie(name) {
-            var url = "http://www.omdbapi.com/?apikey=8e5e4416&s=" + name
+            var url = "http://www.omdbapi.com/?apikey=8e5e4416&s=" + name;
             searchService
                 .findMovieByName(name)
                 .then(function (data) {
