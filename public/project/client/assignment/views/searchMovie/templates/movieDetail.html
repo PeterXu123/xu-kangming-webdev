@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="WAM">
+<head>
+    <meta charset="UTF-8">
+
+    <script src="../../../../../../assignment/vendor/angular/angular.min.js"> </script>
+
+    <link href="../../../../../../assignment/vendor/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../../../assignment/vendor/css/bootstrap/theme.css" rel="stylesheet">
+
+    <link href="../../../../../../assignment/css/style.css" rel="stylesheet"/>
+
+    <script src="../controllers/controller.js"> </script>
+    <!--<script src="../../../services/movie.server.client.js"></script>-->
+<style>
+
+    body {
+        /*display: inline-block;*/
+
+       text-align: center;
+        /*position;*/
+        /*text-align: center;*/
+        background-image: url("https://images7.alphacoders.com/418/418495.jpg");
+        margin-right:0px;
+        background-repeat: no-repeat;
+        -webkit-text-fill-color: white;
+        background-color: black;
+
+
+
+
+    }
+    input[type=text] {
+        background-color: black;
+        color: white;
+    }
+    .comment {
+        -webkit-text-fill-color: black;
+        text-align: left;
+    }
+    .like {
+        -webkit-text-fill-color: black;
+        text-align: left;
+    }
+    .navbar-default {
+        background-color: transparent;
+        border-color: transparent;
+    }
+    </style>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#!/search">
+                    Search Page
+                </a>
+
+            </div>
+        </div>
+    </nav>
+
+<body>
+<div class="container-fluid ">
+    <div ng-show="model.message" class="alert alert-info" color="black">
+        {{model.message}}
+    </div>
+
+        <h1>{{model.movie.Title}}</h1>
+    <img ng-src="{{model.movie.Poster}}" width="200px"/>
+
+
+
+
+
+<br/>
+    <h3> Movie Directors:</h3>
+<div>
+    <div ng-repeat="director in model.movie.Director.split(',')">
+
+         <h4>{{director}} </h4>
+    </div>
+</div>
+    <h3>   Movie Actors:   </h3>
+<div>
+    <div ng-repeat="actor in model.movie.Actors.split(',')">
+        <h4>{{actor}}</h4>
+    </div>
+</div>
+
+
+    <!--<h3> Director: {{model.movie.Director}}</h3>-->
+    <h3>Movie Plot:</h3>
+    <p1>{{model.movie.Plot}}</p1>
+
+
+
+
+
+    <a ng-show="model.movie.imdbID" class="btn btn-primary btn-block"
+    href="http://www.imdb.com/title/{{model.movie.imdbID}}">Link</a>
+
+    <button class="btn btn-primary btn-block"
+            ng-click="model.searchCommentForMovie(model.movieId, model.movie.Title)">
+       Show Comments
+    </button>
+    <ul class="list-group">
+    <li ng-repeat="comment in model.comments" class="list-group-item">
+        <!--<input ng-model="comment.content"-->
+
+               <!--type = "text"-->
+               <!--class="form-control"-->
+               <!--&gt;-->
+        <div class="comment">
+        {{comment.username}}: {{comment.content}}
+        </div>
+
+
+    </li>
+    </ul>
+    <input ng-model="model.addComment"
+
+    type = "text"
+    class="form-control"
+    id="comment" placeholder="add comment">
+    <button class="btn btn-primary btn-block"
+            ng-click="model.addCommentToMovie(model.addComment)">
+        Add Comment
+    </button>
+
+    <button class="btn btn-primary btn-block"
+            ng-click="model.searchLikeForMovie(model.movieId, model.movie.Title)">
+        Show Likes
+    </button>
+    <ul class="list-group">
+        <li ng-repeat="like in model.likes" class="list-group-item">
+            <!--<input ng-model="comment.content"-->
+
+            <!--type = "text"-->
+            <!--class="form-control"-->
+            <!--&gt;-->
+            <div class="like">
+                {{like}}: like it;
+            </div>
+
+
+        </li>
+    </ul>
+    <button class="btn btn-primary btn-block"
+            ng-click="model.addLikeToMovie()">
+        Like
+    </button>
+
+
+
+
+
+
+
+
+
+
+    <hr/>
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</body>

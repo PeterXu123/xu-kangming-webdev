@@ -9,6 +9,8 @@
         console.log(currentUser);
         model.currentUser = currentUser;
 
+
+
     }
 
 })();

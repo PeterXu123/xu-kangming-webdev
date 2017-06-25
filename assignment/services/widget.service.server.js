@@ -52,7 +52,7 @@ function createUploadImage(req, res) {
     var userId = req.body.userId;
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
-    var originalname  = myFile.originalname; // file name on user's computer
+     var originalname  = myFile.originalname; // file name on user's computer
     var filename      = myFile.filename;     // new file name in upload folder
     var path          = myFile.path;         // full path of uploaded file
     var destination   = myFile.destination;  // folder where file is saved to
@@ -70,10 +70,14 @@ function createUploadImage(req, res) {
     widget.url = '/assignment/uploads/'+filename;
     widgetModel.createWidget(widget, pageId)
         .then(function(widget) {
-            var callbackUrl   = "/assignment/#!/user/" + userId+ "/website/" +
+            console.log("hey there");
+            var callbackUrl   = "/assignment/#!/user/" + "website/" +
                 websiteId + "/page/" + pageId + "/widget/";
             res.redirect(callbackUrl);
 
+        },
+        function(err) {
+            console.log(err);
         })
 
 

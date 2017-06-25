@@ -1,0 +1,87 @@
+input.form-control,
+textarea.form-control,
+select.form-control {
+    margin-bottom: 5px;
+}
+
+nav.navbar.navbar-default.navbar-fixed-top {
+    padding-right: 15px;
+}
+nav.navbar.navbar-default.navbar-fixed-bottom {
+
+}
+
+.list-group .col-xs-1 {
+    margin: 0px;
+    padding-left: 5px;
+}
+body {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.navbar-default {
+    background-color: darkblue;
+    border-color: darkblue;
+}
+
+.navbar-default .navbar-b rand {
+    color: white;
+}
+
+.navbar-header {
+    width: 100%;
+}
+
+.navbar-default .navbar-link {
+    color: white;
+}
+
+.navbar.navbar-default a {
+    color: #ffffff;
+}
+
+.wd-widget {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.wd-widget > img {
+    width: 100%;
+}
+
+/*.wd-widget > .wd-widget-toolbar {*/
+    /*position: absolute;*/
+    /*right: 0px;*/
+    /*background: white;*/
+    /*opacity: 0.9;*/
+    /*padding: 5px;*/
+    /*border-bottom-left-radius: 10px;*/
+/*}*/
+.wd-widget .wd-toolbar {
+    position: absolute;
+    background-color: white;
+    top: 0px;
+    right: 0px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 10px;
+    opacity: 0.8;
+    z-index: 1;
+}
+
+.youtube-widget{
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 30px;
+}
+
+.youtube-widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+
+}

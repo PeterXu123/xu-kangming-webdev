@@ -1,0 +1,51 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+
+            <p class="navbar-text pull-left">
+
+                <a  href="#!/user/friend">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                </a>
+
+
+            </p>
+            <div class="navbar-brand ">
+                Add New Friend
+
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="container-fluid">
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+    <div class="input-group">
+        <input ng-model="model.friendName"
+               type="text"
+               class="form-control">
+        <span class="input-group-btn">
+            <a ng-click="model.addFriend(model.friendName)"
+               class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </span>
+    </div>
+
+
+</div>
+
+
+
+>

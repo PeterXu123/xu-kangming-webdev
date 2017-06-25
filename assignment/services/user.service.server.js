@@ -1,6 +1,4 @@
-/**
- * Created by xukan on 5/30/2017.
- */
+
 var app = require('../../express');
 var bcrypt = require("bcrypt-nodejs");
 var userModel = require('../models/user/user.model.server');
@@ -50,8 +48,8 @@ app.get('/auth/facebook', passport.authenticate('facebook',
     { scope :  'email' }));
 app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
-      successRedirect: '/assignment/#!/profile',
-      failureRedirect: '/assignment/#!/login'
+        successRedirect: '/#!/profile',
+        failureRedirect: '/#!/login'
     }));
 
 function isAdmin(req, res, next){
@@ -62,6 +60,7 @@ function isAdmin(req, res, next){
         res.sendStatus(401);
     }
 }
+
 
 function serializeUser(user, done) {
     done(null, user);
@@ -93,6 +92,7 @@ function localStrategy(username, password, done) {
         );
 }
 function register(req, res) {
+    console.log("hello here");
     var user = req.body;
     user.password = bcrypt.hashSync(user.password);
 
@@ -254,6 +254,7 @@ function findAllUsers(req, res) {
                     res.json(user);
                 }
                 else {
+
                     res.sendStatus(404)
                 }
             });

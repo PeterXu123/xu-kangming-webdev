@@ -5,10 +5,12 @@ var passport = require('passport');
 
 
 
+
 app.use(cookieParser());
 app.use(session({ secret: "put some text here" }));
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 app.get('/api/whatever/session', function(req, res) {
     res.send(req.session)
@@ -32,9 +34,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(app.express.static(__dirname + '/public'));
 
 require ("./test/app.js")(app);
-require ('./assignment/app');
+
+
+// require ('./assignment/app');
 require ('./project/app');
- // require('public/assignment/directives/app.js')
+// require ('./public/project/assignment/app.js');
+
+
+  //require('public/assignment/directives/app.js')
 
 
 

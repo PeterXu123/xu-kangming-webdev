@@ -1,0 +1,148 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="navbar-brand col-sm-0">
+                <a href="#!/user/website/" >
+
+                <span class="glyphicon glyphicon-arrow-left pull-left" ></span>
+                </a>
+            </div>
+                <div class="navbar-brand col-sm-4  hidden-xs">
+                    Website
+
+
+
+
+
+            </div>
+            <div class="navbar-brand col-sm-4 hidden-xs">
+                <a href="#!/user/website/new" >
+
+                <span class="glyphicon glyphicon-plus" ></span>
+                </a>
+
+
+
+            </div>
+            <div class="">
+                <a class="navbar-brand col-sm-1">
+                    NewWebsite</a>
+            </div>
+            <div class="col-xs 3 pull-right" >
+                <div class="navbar-brand col-sm-3">
+
+                    <a href="#!/user/website/" >
+                    <span class="glyphicon glyphicon-ok pull-right" ></span>
+
+                </a>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div ng-show="model.error" class="form-group alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <div class="row">
+        <div class="col-xs-4 hidden-xs">
+            <ul class="list-group">
+                <li class="list-group-item active">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-8 col-xs-11">
+                            Name
+                        </div>
+                        <div class="col-lg-3 visible-lg">
+                            Created
+                        </div>
+                        <div class="col-md-3 hidden-sm hidden-xs">
+                            Accessed
+                        </div>
+                        <div class="col-xs-1">
+
+                        </div>
+                    </div>
+                </li>
+                <li ng-repeat="website in model.websites" class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-8 col-xs-11">
+                            <a href="#!/user/website/{{website._id}}/page" >
+                                {{website.name}}
+
+                            </a>
+                        </div>
+                        <div class="col-lg-3 visible-lg">
+                            {{website.dateCreated |date}}
+                        </div>
+                        <div class="col-md-3 hidden-sm hidden-xs">
+                            {{website.dateUpdated |date}}
+                        </div>
+                        <div class="col-xs-1">
+
+                            <a href="#!/user/website/{{website._id}}" >
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+
+
+
+
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-8">
+
+            <label for="name">Name</label>
+            <input class="form-control"
+                   placeholder="Name"
+                   value=""
+                   ng-model="website.name"
+                   id="name"/>
+
+            <label for="description">Description</label>
+            <textarea id="description"
+                      ng-model="website.description"
+                      rows="5"
+                      placeholder="Description"
+                      class="form-control">Description </textarea>
+            <a ng-click="model.createWebsite(website)" class="btn btn-block btn-success">Create</a>
+            <a href="#!/user/website/" class="btn btn-block btn-danger">Cancel</a>
+        </div>
+    </div>
+
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="row navbar-text">
+            <div class="col-xs-3 text-center">
+                <a href="#!/profile">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-heart"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

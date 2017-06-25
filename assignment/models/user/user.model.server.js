@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var userSchema = require('./user.schema.server');
 var userModel = mongoose.model('UserModel', userSchema);
-var bcrypt = require('bcrypt-nodejs')
+var bcrypt = require('bcrypt-nodejs');
 
 userModel.createUser = createUser;
 userModel.findUserById = findUserById;
@@ -91,3 +91,4 @@ function deleteWebsite(userId, websiteId) {
             return user.save();
         });
 }
+

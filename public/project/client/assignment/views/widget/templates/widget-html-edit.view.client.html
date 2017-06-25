@@ -1,0 +1,85 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="navbar-brand col-sm-0">
+                <a href="#!/user/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+
+                    <span class="glyphicon glyphicon-arrow-left pull-left" ></span>
+                </a>
+            </div>
+            <div class="navbar-brand col-sm-4 hidden-xs">
+                Html Editor
+
+
+
+
+
+            </div>
+
+
+            <div class="col-xs 3 pull-right" >
+                <div class="navbar-brand col-sm-3">
+
+                    <a href="#!/user/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                        <span class="glyphicon glyphicon-ok pull-right" ></span>
+
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <label for="name">Name</label>
+    <input class="form-control"
+           placeholder="facebook"
+           value="top NAME"
+           id="name"/>
+<label for="htmlcontent"> htmlcontent</label>
+    <div ng-model="model.widget.text"
+         id="htmlcontent"
+         text-angular
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+        ['indent','outdent'],['html']]">
+    </div>
+
+    <a ng-click="model.updateHtmlWidget(model.widget)"
+       class="btn btn-block btn-success">Update</a>
+
+    <a ng-click="model.deleteWidget(model.widget)" class="btn btn-block btn-danger">Delete</a>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="row navbar-text">
+            <div class="col-xs-3 text-center">
+                <a href="#!/profile">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+            </div>
+            <div class="col-xs-3 text-center">
+                <a href="#">
+                    <span class="glyphicon glyphicon-heart"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>

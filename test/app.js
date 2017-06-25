@@ -3,6 +3,7 @@ module.exports = function(app)
     app.get("/api/test", findAllMessages);
     app.post("/api/test", createMessage);
     app.delete("/api/test/:id", deleteMessage);
+    // mongoose.createConnection('mongodb://127.0.0.1:27017/webdev_summer1_2017');
 
     var connectionString = 'mongodb://127.0.0.1:27017/test'; // for local
     // if(process.env.MLAB_USERNAME_WEBDEV) { // check if running remotely

@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+
+            <p class="navbar-text pull-left">
+                <a href="#!/user/friend">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                </a>
+            </p>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+
+    <form>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input readonly
+                   ng-model="model.friend.username"
+                   type="text"
+
+                   class="form-control"
+                   id="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input ng-model="model.friend.email"
+                   type="email" class="form-control" id="email" placeholder="">
+        </div>
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input ng-model="model.friend.firstName"
+                   type="text" class="form-control" id="first-name" placeholder="">
+        </div>
+    </form>

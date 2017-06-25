@@ -32,6 +32,7 @@
             return api;
 
             function register(user) {
+                console.log("hello hey")
                 var url = "/api/register";
                 return $http.post(url, user)
                     .then(function(response) {

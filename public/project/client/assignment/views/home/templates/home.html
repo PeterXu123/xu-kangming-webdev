@@ -1,0 +1,277 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">My Website</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#!/">Home</a></li>
+                <li ng-if="model.currentUser.roles.indexOf('ADMIN') > -1"><a href="#!/admin">Admin</a></li>
+                <li ng-if="!model.currentUser._id" ><a href="#!/login">Login</a></li>
+                <li ng-if="!model.currentUser._id"><a href="#!/register">Register</a></li>
+                <li ng-if="model.currentUser._id"><a href="#!/profile">Profile</a></li>
+                <li ng-if="model.currentUser._id"><a ng-click="model.logout()">Logout</a>
+
+                </li>
+
+                <li ><a href="#!/search">SearchMovie</a></li>
+
+
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+
+
+<div class="container theme-showcase" role="main">
+    <div class="jumbotron">
+        <h1>Showing movies</h1>
+
+    </div>
+
+
+    <ul class="list-group form-control">
+        <li ng-repeat="movie in model.movies"
+            class="list-group-item">
+            <div class="row">
+                <div class="col-xs-4">
+
+            <img ng-src="http://image.tmdb.org/t/p/w780//{{movie.poster_path}}" width="200px"/>
+
+                </div>
+                <div class="col-sm-8 hidden-xs">
+
+                    <h1>{{movie.title}}</h1>
+                    <h2> {{movie.overview}} </h2>
+                    <h4>{{movie.release_date}} </h4>
+                    <!--<a  class="btn btn-primary"-->
+                       <!--href="#!/search">-->
+                        <!--<h4>Search More Detail</h4></a>-->
+                <!--</div>-->
+
+            </div>
+            <!--{{model.movies}}-->
+
+            </div>
+
+        </li>
+    </ul>
+
+
+
+
+
+
+
+    <!--&lt;!&ndash; Main jumbotron for a primary marketing message or call to action &ndash;&gt;-->
+    <!--<div class="jumbotron">-->
+        <!--<h1>Theme example</h1>-->
+        <!--<p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>-->
+    <!--</div>-->
+
+
+    <!--<div class="mobile-navigation"></div>-->
+<!--</div>-->
+<!--</header>-->
+<!--<main class="main-content">-->
+    <!--<div class="container">-->
+        <!--<div class="page">-->
+
+            <!--<div class="row">-->
+                <!--<div class="col-sm-6 col-md-3">-->
+                    <!--<div class="latest-movie">-->
+                        <!--<a href="#"><img src="dummy/thumb-3.jpg" alt="Movie 3"></a>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-sm-6 col-md-3">-->
+                    <!--<div class="latest-movie">-->
+                        <!--<a href="#"><img src="dummy/thumb-4.jpg" alt="Movie 4"></a>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-sm-6 col-md-3">-->
+                    <!--<div class="latest-movie">-->
+                        <!--<a href="#"><img src="dummy/thumb-5.jpg" alt="Movie 5"></a>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="col-sm-6 col-md-3">-->
+                    <!--<div class="latest-movie">-->
+                        <!--<a href="#"><img src="dummy/thumb-6.jpg" alt="Movie 6"></a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div> &lt;!&ndash; .row &ndash;&gt;-->
+
+            <!--<div class="row">-->
+                <!--<div class="col-md-4">-->
+                    <!--<h2 class="section-title">December premiere</h2>-->
+                    <!--<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>-->
+                    <!--<ul class="movie-schedule">-->
+                        <!--<li>-->
+                            <!--<div class="date">16/12</div>-->
+                            <!--<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div class="date">16/12</div>-->
+                            <!--<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div class="date">16/12</div>-->
+                            <!--<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div class="date">16/12</div>-->
+                            <!--<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>-->
+                        <!--</li>-->
+                    <!--</ul> &lt;!&ndash; .movie-schedule &ndash;&gt;-->
+                <!--</div>-->
+                <!--<div class="col-md-4">-->
+                    <!--<h2 class="section-title">November premiere</h2>-->
+                    <!--<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>-->
+                    <!--<ul class="movie-schedule">-->
+                        <!--<li>-->
+                            <!--<div class="date">16/12</div>-->
+                            <!--<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div class="date">16/12</div>-->
+                            <!--<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div class="date">16/12</div>-->
+                            <!--<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div class="date">16/12</div>-->
+                            <!--<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>-->
+                        <!--</li>-->
+                    <!--</ul> &lt;!&ndash; .movie-schedule &ndash;&gt;-->
+                <!--</div>-->
+                <!--<div class="col-md-4">-->
+                    <!--<h2 class="section-title">October premiere</h2>-->
+                    <!--<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>-->
+                    <!--<ul class="movie-schedule">-->
+                        <!--<li>-->
+                            <!--<div class="date">16/12</div>-->
+                            <!--<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div class="date">16/12</div>-->
+                            <!--<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div class="date">16/12</div>-->
+                            <!--<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                            <!--<div class="date">16/12</div>-->
+                            <!--<h2 class="entry-title"><a href="#">Perspiciatis unde omnis</a></h2>-->
+                        <!--</li>-->
+                    <!--</ul> &lt;!&ndash; .movie-schedule &ndash;&gt;-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div> &lt;!&ndash; .container &ndash;&gt;-->
+<!--</main>-->
+<!--<footer class="site-footer">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-2">-->
+                <!--<div class="widget">-->
+                    <!--<h3 class="widget-title">About Us</h3>-->
+                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia tempore vitae mollitia nesciunt saepe cupiditate</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-2">-->
+                <!--<div class="widget">-->
+                    <!--<h3 class="widget-title">Recent Review</h3>-->
+                    <!--<ul class="no-bullet">-->
+                        <!--<li><a href="#">Lorem ipsum dolor</a></li>-->
+                        <!--<li><a href="#">Sit amet consecture</a></li>-->
+                        <!--<li><a href="#">Dolorem respequem</a></li>-->
+                        <!--<li><a href="#">Invenore veritae</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-2">-->
+                <!--<div class="widget">-->
+                    <!--<h3 class="widget-title">Help Center</h3>-->
+                    <!--<ul class="no-bullet">-->
+                        <!--<li><a href="#">Lorem ipsum dolor</a></li>-->
+                        <!--<li><a href="#">Sit amet consecture</a></li>-->
+                        <!--<li><a href="#">Dolorem respequem</a></li>-->
+                        <!--<li><a href="#">Invenore veritae</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-2">-->
+                <!--<div class="widget">-->
+                    <!--<h3 class="widget-title">Join Us</h3>-->
+                    <!--<ul class="no-bullet">-->
+                        <!--<li><a href="#">Lorem ipsum dolor</a></li>-->
+                        <!--<li><a href="#">Sit amet consecture</a></li>-->
+                        <!--<li><a href="#">Dolorem respequem</a></li>-->
+                        <!--<li><a href="#">Invenore veritae</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-2">-->
+                <!--<div class="widget">-->
+                    <!--<h3 class="widget-title">Social Media</h3>-->
+                    <!--<ul class="no-bullet">-->
+                        <!--<li><a href="#">Facebook</a></li>-->
+                        <!--<li><a href="#">Twitter</a></li>-->
+                        <!--<li><a href="#">Google+</a></li>-->
+                        <!--<li><a href="#">Pinterest</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-md-2">-->
+                <!--<div class="widget">-->
+                    <!--<h3 class="widget-title">Newsletter</h3>-->
+                    <!--<form action="#" class="subscribe-form">-->
+                        <!--<input type="text" placeholder="Email Address">-->
+                    <!--</form>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div> &lt;!&ndash; .row &ndash;&gt;-->
+
+        <!--<div class="colophon">Copyright 2014 Company name, Designed by Themezy. All rights reserved</div>-->
+    <!--</div> &lt;!&ndash; .container &ndash;&gt;-->
+
+<!--</footer>-->
+<!--</div>-->
+<!--&lt;!&ndash; Default snippet for navigation &ndash;&gt;-->
+
+
+
+<!--<script src="js/jquery-1.11.1.min.js"></script>-->
+<!--<script src="js/plugins.js"></script>-->
+<!--<script src="js/app.js"></script>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div> <!-- /container -->
