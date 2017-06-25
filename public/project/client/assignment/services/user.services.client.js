@@ -28,6 +28,7 @@
                 updateUser: updateUser,
                 deleteUser: deleteUser,
                 addFollowing: addFollowing,
+                addLike: addLike,
                 cancelFollowing: cancelFollowing,
 
 
@@ -35,6 +36,14 @@
 
             };
             return api;
+            function addLike(userId, imdbId, movieName) {
+                var url = "/api/project/addLike";
+                var object = {userId: userId, imdbId: imdbId, movieName: movieName};
+                return $http.post(url, object)
+                    .then(function(response) {
+                        return response.data;
+                    })
+            }
 
             function cancelFollowing(userId, followingId, username, followingname) {
                 var url = "/api/project/cancelFollowing";

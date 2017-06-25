@@ -13,6 +13,7 @@
         model.deleteUser = deleteUser;
         model.logout = logout;
         model.unregister = unregister;
+        model.showlike = showlike;
 
 
 
@@ -23,6 +24,10 @@
             renderUser(currentUser);
         }
         init();
+
+        function showlike() {
+            model.likes = currentUser.like;
+        }
         function renderUser(user) {
             console.log(user);
             model.user = user;

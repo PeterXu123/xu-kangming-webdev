@@ -64,6 +64,9 @@
     <div ng-show="model.message" class="alert alert-info" color="black">
         {{model.message}}
     </div>
+    <div ng-show="model.error" class="alert alert-danger" color="black">
+        {{model.error}}
+    </div>
 
         <h1>{{model.movie.Title}}</h1>
     <img ng-src="{{model.movie.Poster}}" width="200px"/>

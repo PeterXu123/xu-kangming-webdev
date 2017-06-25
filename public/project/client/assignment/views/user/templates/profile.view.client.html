@@ -79,6 +79,27 @@
        ng-click="model.unregister()"
 
        href="#!/">Unregister User</a>
+
+    <button class="btn btn-primary btn-block"
+            ng-click="model.showlike()">
+        Show Likes
+    </button>
+    <ul class="list-group">
+        <li ng-repeat="like in model.likes" class="list-group-item">
+            <!--<input ng-model="comment.content"-->
+
+            <!--type = "text"-->
+            <!--class="form-control"-->
+            <!--&gt;-->
+
+                {{like}}
+
+
+        </li>
+    </ul>
+
+
+
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

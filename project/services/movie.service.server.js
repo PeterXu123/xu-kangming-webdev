@@ -1,6 +1,7 @@
 const app = require('../../express');
 var movieModel = require('../models/movie/movie.model.server');
 
+
 app.post("/api/project/movie/comment", findCommentForMovie);
 app.post("/api/project/movie/addComment/:movieId", addCommentToMovie);
 app.post("/api/project/movie/addLike/:movieId", addLikeToMovie);
@@ -24,8 +25,10 @@ function addLikeToMovie(req, res) {
     var username = req.body.username;
 
 
+
     movieModel
         .addLike(username, movieId);
+
     res.sendStatus(200);
 
 }

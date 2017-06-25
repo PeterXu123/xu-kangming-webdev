@@ -15,9 +15,11 @@
             id:    String,
             token: String
         },
+        like: [{imdbId: String, movieName: String}],
         email: String,
         phone: String,
         websites: [{type: mongoose.Schema.Types.ObjectId, ref: "ProjectWebsiteModel"}],
+
         dateCreated: {type: Date, default: Date.now},
         followings: [{username: String, _id: {type: mongoose.Schema.Types.ObjectId, ref: "ProjectUserModel"}}],
         followers:  [{username: String, _id: {type: mongoose.Schema.Types.ObjectId, ref: "ProjectUserModel"}}]

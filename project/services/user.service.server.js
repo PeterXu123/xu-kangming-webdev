@@ -53,6 +53,8 @@ app.get('/api/project/checkAdmin', checkAdmin);
 
 app.post('/api/project/followings', addFollowing);
 app.post('/api/project/cancelFollowing', cancelFollowing);
+app.post('/api/project/addLike', addLike);
+
 
 
 app.post('/api/project/logout', logout);
@@ -62,13 +64,20 @@ app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'e
 
 app.get('/project/auth/facebook', passport.authenticate('facebook',
     { scope :  'email' }));
-app.get('/project/auth/facebook/callback',
+app.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
         successRedirect: '/#!/profile',
         failureRedirect: '/#!/login'
     }));
 
-
+function addLike(req, res) {
+    var userId = req.body.userId;
+    var imdbId = req.body.imdbId;
+    var movieName = req.body.movieName;
+    userModel
+        .addLike(userId, imdbId, movieName);
+    res.sendStatus(200);
+}
 function cancelFollowing(req, res) {
     var userId = req.body.userId;
     var followingId = req.body.followingId;

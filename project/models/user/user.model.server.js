@@ -21,7 +21,28 @@
     userModel.cancelFollowing = cancelFollowing;
     userModel.cancelFollower = cancelFollower;
     userModel.findUserByGoogleId = findUserByGoogleId;
+    userModel.addLike = addLike;
     module.exports = userModel;
+
+    function addLike(userId, imdbId, movieName) {
+        return userModel
+            .findOneAndUpdate({
+                    _id: userId
+                },
+                {$push: {like: {imdbId: imdbId, movieName: movieName}}},
+                {safe: true, upsert: true},
+                function(err) {
+                    if(err) {
+                        console.log(err);
+                    }
+                    else {
+
+                    }
+                });
+
+
+
+    }
 
     function cancelFollowing(userId, followingId, followingname) {
         return userModel.findOneAndUpdate({_id: userId},

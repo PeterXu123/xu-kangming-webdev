@@ -2,7 +2,7 @@
     angular.module('WAM')
         .controller("movieDetailController", movieDetailController);
 
-    function movieDetailController(searchService, $sce, currentUser, $routeParams) {
+    function movieDetailController(searchService, $sce, currentUser, $routeParams, userService) {
         var model = this;
         model.currentUser = currentUser;
         console.log(model.currentUser);
@@ -17,14 +17,25 @@
         model.addCommentToMovie = addCommentToMovie;
         model.addLikeToMovie = addLikeToMovie;
 
+
         // model.searchTv = searchTv;
         // model.searchTvById = searchTvById;
         searchService
             .findMovieById(model.movieId)
             .then(function(response) {
                 model.movie = response;
+                model.title = response.Title;
+                console.log(response);
+
 
             })
+        searchService
+            .findCommentForMovie(model.movieId, model.title)
+            .then(function (movie) {
+                model.likes = movie.like;
+            })
+
+
 
         function searchLikeForMovie(movieId, movieTitle) {
             searchService
@@ -46,11 +57,22 @@
         }
 
         function addLikeToMovie() {
+            console.log(model.likes);
+            if (model.likes.indexOf(currentUser.username) > -1) {
+                model.error = "you have liked it";
+                return;
+            }
             searchService
                 .addLikeToMovie(currentUser.username, model.movieId)
                 .then(function(response) {
                     model.message= "like has been added";
                 })
+            userService
+                .addLike(currentUser._id, model.movieId, model.movie.Title)
+                .then(function(response) {
+
+                })
+
         }
 
 
